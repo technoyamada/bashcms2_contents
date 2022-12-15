@@ -3,7 +3,7 @@ Keywords:
 Copyright: (C) Takaaki Yamada
 ---
 
-# title
+# deploy: fetchのファイル名を乱数でrenameする
 
 Write contents here.
 
