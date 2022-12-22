@@ -11,7 +11,7 @@ Copyright: (C) Takaaki Yamada
 
 ## かわいいねこ
 
-![かわいいねこ](../bashcms2_contents/posts/20221222_cat_of_post/pretty_cat.jpeg)
+![かわいいねこ](posts/20221222_cat_of_post/pretty_cat.jpeg)
 
 ## <span id="jumping">跳ぶねこ</span>
 
