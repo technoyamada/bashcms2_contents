@@ -11,11 +11,11 @@ Copyright: (C) Takaaki Yamada
 
 ## かわいいねこ
 
-![かわいいねこ](pretty_cat.jpeg)
+![かわいいねこ](./pretty_cat.jpeg)
 
 ## <span id="jumping">跳ぶねこ</span>
 
-![](jumping_cat.jpeg]
+![](jumping_cat.jpeg)
 
 ## ドキュメント
 
