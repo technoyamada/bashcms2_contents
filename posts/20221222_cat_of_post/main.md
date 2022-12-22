@@ -19,4 +19,5 @@ Copyright: (C) Takaaki Yamada
 
 ## ドキュメント
 
-[
+[What Is _Man with a Hammer” Syndrome and How Can You Avoid It_ — Wealest.pdf](What Is _Man with a Hammer” Syndrome and How Can You Avoid It_ — Wealest.pdf)
+[Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%8D%E3%82%AE)
