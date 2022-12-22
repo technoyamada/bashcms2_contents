@@ -21,3 +21,7 @@ Copyright: (C) Takaaki Yamada
 
 [What Is Man with a Hammer Syndrome and How Can You Avoid It](Man_with_hammer_syndrome.pdf)
 [Wikipedia](https://en.wikipedia.org/wiki/Charlie_Munger)
+
+## git log でファイル更新日時を取得するテスト
+
+* ファイルを更新して git add -> git commit する
