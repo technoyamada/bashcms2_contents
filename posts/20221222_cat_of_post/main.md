@@ -5,7 +5,7 @@ Copyright: (C) Takaaki Yamada
 
 # 猫とチャーリー・マンガー
 
-ねこ！　マンガー！
+ねこ！　マンガー！ 行けー！
 
 * [跳ぶねこ](#jumping)
 
