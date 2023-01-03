@@ -3,7 +3,7 @@ Keywords: 猫, マンガー
 Copyright: (C) Takaaki Yamada
 ---
 
-# 猫とチャーリー・マンガー
+# 猫とチャーリー・マンガーと
 
 ねこ！　マンガー！ 行けー！
 
