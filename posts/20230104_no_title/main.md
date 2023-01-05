@@ -151,3 +151,52 @@ $ sudo apt install gawk
 # awkがgawkを指していることを確認する
 （省略）
 ```
+### sed
+```
+$ sed --version
+Copyright (C) 2017 Free Software Foundation, Inc.
+ライセンス GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+作者 Jay Fenlason、 Tom Lord、 Ken Pizzini、
+および Paolo Bonzini。
+GNU sed ホームページ: <http://www.gnu.org/software/sed/>.
+GNU ソフトウェアを使用する際の一般的なヘルプ: <http://www.gnu.org/gethelp/>.
+E-mail bug reports to: <bug-sed@gnu.org>.
+```
+ 
+## Webサーバーのセットアップ
+
+### ドメインの取得
+- Google Domains で「technoyamada.com」を購入した。
+
+### ホスト名の変更
+サーバー
+```
+$ cat /etc/hostname
+tk2-114-57828
+$ echo "bashcms2.technoyamada.com" | sudo tee /etc/hostname
+$ cat /etc/hostaname
+bashcms2.technoyamada.com
+$ sudo reboot
+```
+
+### Apacheのインストール
+```
+$ sudo apt install apache2
+$ curl http://localhost |& grep title
+    <title>Apache2 Ubuntu Default Page: It works</title>
+```
+
+### Apacheの情報を隠す
+```
+$ sudo vim /etc/apache2/apache2.conf
+# 以下を追記
+ServerSignature Off
+ServerTokens ProductOnly
+$ sudo systemctl restart apache2
+```
+
+### HTTPS化
+
