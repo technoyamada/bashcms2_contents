@@ -32,8 +32,7 @@ $ ssh takaaki@<server ip address>
 ローカルPC
 ```
 $ scp .ssh/id_rsa.pub takaaki@<server ip address>:~/
-$ ssh takaaki@<server ip address>
-# パスワードを求められる
+$ ssh takaaki@<server ip address>  # パスワードを求められる
 ```
 サーバー
 ```
@@ -45,6 +44,5 @@ $ exit
 ```
 ローカルPC
 ```
-$ ssh -i <秘密鍵> takaaki@<server ip address>
-# パスワードを求められない
+$ ssh -i <秘密鍵> takaaki@<server ip address>  # パスワードを求められない
 ```
