@@ -79,9 +79,43 @@ Last login: Thu Jan  5 19:06:48 2023 from 60.71.250.240
 ## 日本語化
 サーバー
 ```
+$ locale
+LANG=C.UTF-8
+LANGUAGE=
+LC_CTYPE=C.UTF-8
+LC_NUMERIC="C.UTF-8"
+LC_TIME="C.UTF-8"
+LC_COLLATE="C.UTF-8"
+LC_MONETARY="C.UTF-8"
+LC_MESSAGES="C.UTF-8"
+LC_PAPER="C.UTF-8"
+LC_NAME="C.UTF-8"
+LC_ADDRESS="C.UTF-8"
+LC_TELEPHONE="C.UTF-8"
+LC_MEASUREMENT="C.UTF-8"
+LC_IDENTIFICATION="C.UTF-8"
+LC_ALL=
+
 $ sudo apt install language-pack-ja
 $ sudo update-locale LANG=ja_JP.UTF-8
 $ echo 'export LANG=ja_JP.UTF-8' >> ~/.bashrc
 $ echo 'export LANGUAGE="ja_JP:ja"' >> ~/.bashrc
 $ exit # 再度ログインする
+
+$ locale
+LANG=ja_JP.UTF-8
+LANGUAGE=ja_JP:ja
+LC_CTYPE=C.UTF-8
+LC_NUMERIC="ja_JP.UTF-8"
+LC_TIME="ja_JP.UTF-8"
+LC_COLLATE="ja_JP.UTF-8"
+LC_MONETARY="ja_JP.UTF-8"
+LC_MESSAGES="ja_JP.UTF-8"
+LC_PAPER="ja_JP.UTF-8"
+LC_NAME="ja_JP.UTF-8"
+LC_ADDRESS="ja_JP.UTF-8"
+LC_TELEPHONE="ja_JP.UTF-8"
+LC_MEASUREMENT="ja_JP.UTF-8"
+LC_IDENTIFICATION="ja_JP.UTF-8"
+LC_ALL=
 ```
