@@ -3,7 +3,12 @@ Keywords:
 Copyright: (C) Takaaki Yamada
 ---
 
-# 
-
-Write contents here.
-
+# さくらのVPSをセットアップする
+## Ubuntuの再インストール
+### OSの選択
+- 「OS再インストール」をクリックする。
+- カスタムOSで「Ubuntu 18.04 amd64」を選択し、インストールOSとして「Ubuntu 18.04 amd64」を選択した上で、「内容確認」をクリックする。
+- 内容を確認の上、「OS再インストール」をクリックする。
+### ユーザーの追加
+- 「VNCコンソールを起動」をクリックする。
+- 
