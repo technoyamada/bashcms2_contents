@@ -75,3 +75,13 @@ Run 'do-release-upgrade' to upgrade to it.
 
 Last login: Thu Jan  5 19:06:48 2023 from 60.71.250.240
 ```
+
+## 日本語化
+サーバー
+```
+$ sudo apt install language-pack-ja
+$ sudo update-locale LANG=ja_JP.UTF-8
+$ echo 'export LANG=ja_JP.UTF-8' >> ~/.bashrc
+$ echo 'export LANGUAGE="ja_JP:ja"' >> ~/.bashrc
+$ exit # 再度ログインする
+```
