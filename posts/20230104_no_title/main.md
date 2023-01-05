@@ -23,7 +23,28 @@ Copyright: (C) Takaaki Yamada
 
 ## SSH接続
 
-### 公開鍵認証を使わないSSH接続
+### まずは、公開鍵認証を用いないSSH接続
 ```
 $ ssh takaaki@<server ip address>
+```
+
+### 公開鍵認証を用いたSSH接続
+ローカルPC
+```
+$ scp .ssh/id_rsa.pub takaaki@<server ip address>:~/
+$ ssh takaaki@<server ip address>
+# パスワードを求められる
+```
+サーバー
+```
+$ mkdir .ssh
+$ chmod 700 .ssh/
+$ cat id_rsa.pub >> .ssh/authorized_keys
+$ chmod 600 .ssh/authorized_keys
+$ exit
+```
+ローカルPC
+```
+$ ssh -i <秘密鍵> takaaki@<server ip address>
+# パスワードを求められない
 ```
