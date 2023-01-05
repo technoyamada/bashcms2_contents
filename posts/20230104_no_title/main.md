@@ -135,6 +135,7 @@ There is NO WARRANTY, to the extent permitted by law.
 
 ### awk/gawk
 ```
+# awkの本体を調査する
 $ which awk
 /usr/bin/awk
 $ ls -l /usr/bin/awk
@@ -142,11 +143,11 @@ lrwxrwxrwx 1 root root 21  1月  5 18:28 /usr/bin/awk -> /etc/alternatives/awk
 $ ls -l /etc/alternatives/awk
 lrwxrwxrwx 1 root root 13  1月  5 18:28 /etc/alternatives/awk -> /usr/bin/mawk*
 $ ls -l /usr/bin/mawk
--rwxr-xr-x 1 root root 125416  4月  3  2018 /usr/bin/mawk*
-$ awk -W version
-mawk 1.3.3 Nov 1996, Copyright (C) Michael D. Brennan
+-rwxr-xr-x 1 root root 125416  4月  3  2018 /usr/bin/mawk
 
-compiled limits:
-max NF             32767
-sprintf buffer      2040
+# gawk(GNU Awk)をインストールする
+$ sudo apt install gawk
+
+# awkがgawkを指していることを確認する
+（省略）
 ```
