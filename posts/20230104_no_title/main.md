@@ -1,5 +1,5 @@
 ---
-Keywords: 
+Keywords: 環境構築, さくらのVPS, Ubuntu
 Copyright: (C) Takaaki Yamada
 ---
 
@@ -11,4 +11,9 @@ Copyright: (C) Takaaki Yamada
 - 内容を確認の上、「OS再インストール」をクリックする。
 ### ユーザーの追加
 - 「VNCコンソールを起動」をクリックする。
-- 
+- Full name for the new user: として、「Takaaki Yamada」を入力して「Continue」。
+- User name for your account: として、「takaaki」を入力して「Continue」。
+- Password を入力して「Continue」。
+- Partition disks として、「Guided - use entire disk」を選択する。
+- 「Virtual disk 1 (vda) - ...」を選択する。
+- 「Yes」を選択してインストールを続行する。
