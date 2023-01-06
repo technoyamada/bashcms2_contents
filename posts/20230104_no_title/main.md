@@ -286,3 +286,36 @@ diff -ru /home/takaaki/TEST/apache2/sites-enabled/bashcms2.conf ./sites-enabled/
 +RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
  </VirtualHost>
 ```
+- 自動更新のテスト
+```
+$ sudo cerbot renew --dry-run
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Processing /etc/letsencrypt/renewal/bashcms2.technoyamada.com.conf
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Account registered.
+Simulating renewal of an existing certificate for bashcms2.technoyamada.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded:
+  /etc/letsencrypt/live/bashcms2.technoyamada.com/fullchain.pem (success)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+- 自動更新タイマーの確認
+```
+$ systemctl list-timers
+NEXT                         LEFT          LAST                         PASSED       UNIT
+Fri 2023-01-06 19:45:00 JST  2h 37min left n/a                          n/a          snap.certbot.renew.timer
+Fri 2023-01-06 20:17:21 JST  3h 9min left  Thu 2023-01-05 20:17:21 JST  20h ago      systemd-tmpfiles-clean.t
+Fri 2023-01-06 20:35:00 JST  3h 27min left Fri 2023-01-06 11:20:21 JST  5h 47min ago apt-daily.timer
+Sat 2023-01-07 06:38:20 JST  13h left      Fri 2023-01-06 06:23:02 JST  10h ago      apt-daily-upgrade.timer
+Sat 2023-01-07 08:12:19 JST  15h left      Fri 2023-01-06 14:11:15 JST  2h 56min ago motd-news.timer
+Mon 2023-01-09 00:00:00 JST  2 days left   Thu 2023-01-05 18:36:34 JST  22h ago      fstrim.timer
+n/a                          n/a           n/a                          n/a          ua-timer.timer
+
+7 timers listed.
+Pass --all to see loaded but inactive timers, too.
+```
+
+### Git/GitHub
