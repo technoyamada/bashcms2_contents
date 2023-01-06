@@ -199,7 +199,7 @@ $ sudo systemctl restart apache2
 ```
 
 ### HTTPS化
-[certbot instructions](https://certbot.eff.org/instructions?ws=apache&os=ubuntubionic)
+- [certbot instructions](https://certbot.eff.org/instructions?ws=apache&os=ubuntubionic)
 ```
 # certbotをインストールするため、まずはパッケージ管理ツールsnapdをインストールする
 $ sudo apt install snapd
@@ -251,4 +251,38 @@ Congratulations! You have successfully enabled HTTPS on https://bashcms2.technoy
 If you like Certbot, please consider supporting our work by:
  * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
  * Donating to EFF:                    https://eff.org/donate-le
+```
+- certbotが自動的に設定変更した内容を確認する
+```
+$ diff -ru <保存しておいたオリジナルファイルのパス> /etc/apache2
+./mods-enabled のみに存在: rewrite.load
+./mods-enabled のみに存在: socache_shmcb.load
+./mods-enabled のみに存在: ssl.conf
+./mods-enabled のみに存在: ssl.load
+./sites-available のみに存在: bashcms2-le-ssl.conf
+diff -ru /home/takaaki/TEST/apache2/sites-available/bashcms2.conf ./sites-available/bashcms2.conf
+--- /home/takaaki/TEST/apache2/sites-available/bashcms2.conf    2023-01-06 14:25:42.501724746 +0900
++++ ./sites-available/bashcms2.conf     2023-01-06 14:28:15.852647100 +0900
+@@ -26,6 +26,9 @@
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
++RewriteEngine on
++RewriteCond %{SERVER_NAME} =bashcms2.technoyamada.com
++RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+ </VirtualHost>
+
+ # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+./sites-enabled のみに存在: bashcms2-le-ssl.conf
+diff -ru /home/takaaki/TEST/apache2/sites-enabled/bashcms2.conf ./sites-enabled/bashcms2.conf
+--- /home/takaaki/TEST/apache2/sites-enabled/bashcms2.conf      2023-01-06 14:25:42.501724746 +0900
++++ ./sites-enabled/bashcms2.conf       2023-01-06 14:28:15.852647100 +0900
+@@ -26,6 +26,9 @@
+        # following line enables the CGI configuration for this host only
+        # after it has been globally disabled with "a2disconf".
+        #Include conf-available/serve-cgi-bin.conf
++RewriteEngine on
++RewriteCond %{SERVER_NAME} =bashcms2.technoyamada.com
++RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+ </VirtualHost>
 ```
