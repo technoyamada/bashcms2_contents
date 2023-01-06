@@ -199,4 +199,55 @@ $ sudo systemctl restart apache2
 ```
 
 ### HTTPS化
+```
+# certbotをインストールするため、まずはパッケージ管理ツールsnapdをインストールする
+$ sudo apt install snapd
+$ sudo snap install core; sudo snap refresh core
+$ sudo apt-get remove certbot # 既存のcertbotをアンインストールする（ある場合のみ）
+$ sudo certbot --apache
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Enter email address (used for urgent renewal and security notices)
+ (Enter 'c' to cancel): ymd.takaaki@gmail.com
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.3-September-21-2022.pdf. You must
+agree in order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: Y
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: Y
+Account registered.
+
+Which names would you like to activate HTTPS for?
+We recommend selecting either all domains, or all domains in a VirtualHost/server block.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: bashcms2.technoyamada.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel): 1
+Requesting a certificate for bashcms2.technoyamada.com
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/bashcms2.technoyamada.com/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/bashcms2.technoyamada.com/privkey.pem
+This certificate expires on 2023-04-06.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+Deploying certificate
+Successfully deployed certificate for bashcms2.technoyamada.com to /etc/apache2/sites-available/bashcms2-le-ssl.conf
+Congratulations! You have successfully enabled HTTPS on https://bashcms2.technoyamada.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+```
