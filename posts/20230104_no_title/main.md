@@ -319,3 +319,13 @@ Pass --all to see loaded but inactive timers, too.
 ```
 
 ### Git/GitHub
+- SSH の ForwardAgent を用いてローカルPCの鍵を使う
+ローカルPC
+```
+# ~/.ssh/config
+Host sakura
+        HostName 153.121.51.82
+        User takaaki
+        IdentityFile ~/.ssh/Sakura/id_rsa
+        ForwardAgent yes
+```
