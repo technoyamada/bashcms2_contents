@@ -16,7 +16,7 @@ Copyright: (C) Takaaki Yamada
 | u | 定義されていない変数があったら止まる |
 
 ## Update SSH_AUTH_SOCK on TMUX ATTACH
-~/.bashrc にエイリアスを追加する
+※うまくいかない。例えば、git pushではsshコマンドを直接叩いているわけではないようなので
 ```
 alias ssh=$(cat << 'EOS'
   if [ -n "$TMUX" ]; then
