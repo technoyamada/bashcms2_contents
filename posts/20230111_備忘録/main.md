@@ -16,7 +16,8 @@ Copyright: (C) Takaaki Yamada
 | u | 定義されていない変数があったら止まる |
 
 ## Update SSH_AUTH_SOCK on TMUX ATTACH
-※うまくいかない。例えば、git pushではsshコマンドを直接叩いているわけではないようなので
+- attachしたときに走るスクリプトを見つけられず断念。
+- また、git pushするときにssh接続に失敗することに対して、以下のエイリアスで対応しようとしたが失敗。sshコマンドを直接叩いているわけではないようなので。
 ```
 alias ssh=$(cat << 'EOS'
   if [ -n "$TMUX" ]; then
