@@ -14,6 +14,7 @@ Copyright: (C) Takaaki Yamada
 | x | 実行したコマンドを標準エラー出力に表示する |
 | e | コマンドにエラーが発生したら止まる |
 | u | 定義されていない変数があったら止まる |
+| v | 冗長に出力する |
 
 ## Update SSH_AUTH_SOCK on TMUX ATTACH
 - attachしたときに走るスクリプトを見つけられず断念。
@@ -28,3 +29,5 @@ EOS
 )
 
 ```
+
+## CGI
