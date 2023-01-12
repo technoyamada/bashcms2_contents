@@ -37,6 +37,7 @@ Copyright: (C) Takaaki Yamada
 |:bdelete N1 N2 .. (:bd N1 N2 ..)|バッファを削除する|
 |:N1 N2 .. bdelete (:N1 N2 .. bd)|バッファを削除する|
 |:N1,N5 bdelete (:N1,N5 bd)|連続するバッファ番号を範囲指定して削除する|
+|:%bdelete (:%bd)|すべてのバッファを削除する|
 
 ### Tip 38 Group Buffers into a Collection with the Argument List
 
