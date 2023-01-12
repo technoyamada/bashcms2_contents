@@ -12,21 +12,18 @@ Copyright: (C) Takaaki Yamada
 ### Tip 37 Track Open Files with the Buffer List
 
 ```
-# ファイルを開く
-$ cd code/files
-$ vim *.txt
-
-# Vimのバッファに２つのファイルがロードされる
 # バッファリストを表示する
+# %記号: カレントウィンドウに表示されているアクティブバッファ
+# #記号: オルタネートバッファ。<C-^>でトグル可能
 :ls
-  1 %a   "a.txt"                        line 1  # %記号: カレントウィンドウに表示されているアクティブバッファ
-  2 #    "b.txt"                        line 1  # #記号: オルタネートバッファ。<C-^>でトグル可能
+  1 %a   "a.txt"                        line 1  
+  2 #    "b.txt"                        line 1  
 :bnext
 :ls
   1 #    "a.txt"                        line 1
   2 %a   "b.txt"                        line 1
 ```
-バッファリストの選択
+バッファの選択と削除
 |コマンドライン|意味|
 ----|----
 |:ls|バッファリストを表示する|
