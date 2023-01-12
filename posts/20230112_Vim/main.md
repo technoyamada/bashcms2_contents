@@ -6,8 +6,8 @@ Copyright: (C) Takaaki Yamada
 # Practical Vim のメモ - Part II. Files
 
 ## 6. Manage Multiple Files
-Vimで開かれたファイルをバッファと呼ぶ。
-ファイルとバッファの違いを考えるとき、ファイルはディスク上に保存され、バッファはメモリ上に保存されていると考えるとわかりやすい。
+- Vimで開かれたファイルをバッファと呼ぶ。
+- ファイルとバッファの違いを考えるとき、ファイルはディスク上に保存され、バッファはメモリ上に保存されていると考えるとわかりやすい。
 
 ### Tip 37 Track Open Files with the Buffer List
 
