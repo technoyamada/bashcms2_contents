@@ -37,3 +37,8 @@ $ vim *.txt
 |:buffer NUM (:bN)|数字のバッファに切り替える|
 |:bdelete (:bd)|アクティブなバッファを削除する|
 |:bdelete N1 N2 .. (:bd N1 N2 ..)|バッファを削除する|
+|:N1 N2 .. bdelete (:N1 N2 .. bd)|バッファを削除する|
+|:N1,N5 bdelete (:N1,N5 bd)|連続するバッファ番号を範囲指定して削除する|
+
+### Tip 38 Group Buffers into a Collection with the Argument List
+
