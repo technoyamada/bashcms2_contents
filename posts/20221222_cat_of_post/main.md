@@ -15,7 +15,7 @@ Copyright: (C) Takaaki Yamada
 
 ## <span id="jumping">跳ぶねこ</span>
 
-![](jumping_cat.jpeg)
+![](./jumping_cat.jpeg)
 
 ## ドキュメント
 
