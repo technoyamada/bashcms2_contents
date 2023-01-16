@@ -42,3 +42,5 @@ Copyright: (C) Takaaki Yamada
 |:%bdelete (:%bd)|すべてのバッファを削除する|
 
 ### Tip 38 Group Buffers into a Collection with the Argument List
+
+ここから…
