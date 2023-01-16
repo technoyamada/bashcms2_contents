@@ -24,7 +24,7 @@ Copyright: (C) Takaaki Yamada
   2 %a   "b.txt"                        line 1
 ```
 
-バッファの選択と削除
+- バッファの選択と削除
 
 |コマンドライン|意味|
 ----|----
@@ -42,4 +42,3 @@ Copyright: (C) Takaaki Yamada
 |:%bdelete (:%bd)|すべてのバッファを削除する|
 
 ### Tip 38 Group Buffers into a Collection with the Argument List
-
