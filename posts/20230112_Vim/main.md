@@ -24,7 +24,7 @@ Copyright: (C) Takaaki Yamada
   2 %a   "b.txt"                        line 1
 ```
 
-- バッファの選択と削除
+バッファの選択と削除
 
 |コマンドライン|意味|
 ----|----
