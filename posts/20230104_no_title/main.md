@@ -29,12 +29,16 @@ $ ssh takaaki@<server ip address>
 ```
 
 ### 公開鍵認証を用いたSSH接続
+
 ローカルPC
+
 ```
 $ scp .ssh/id_rsa.pub takaaki@<server ip address>:~/
 $ ssh takaaki@<server ip address>  # パスワードを求められる
 ```
+
 サーバー
+
 ```
 $ mkdir .ssh
 $ chmod 700 .ssh/
@@ -42,13 +46,17 @@ $ cat id_rsa.pub >> .ssh/authorized_keys
 $ chmod 600 .ssh/authorized_keys
 $ exit
 ```
+
 ローカルPC
+
 ```
 $ ssh -i <秘密鍵> takaaki@<server ip address>  # パスワードを求められない
 ```
 
 ### パスワードログインの禁止
+
 サーバー
+
 ```
 $ cd /etc/ssh/
 $ sudo cp -p sshd_config sshd_config.org
@@ -60,7 +68,9 @@ $ diff sshd_config sshd_config.org
 $ sudo systemctl restart sshd
 $ exit
 ```
+
 ローカルPC
+
 ```
 $ ssh takaaki@<server ip address>
 takaaki@<server ip address>: Permission denied (publickey).
@@ -77,7 +87,9 @@ Last login: Thu Jan  5 19:06:48 2023 from 60.71.250.240
 ```
 
 ## 日本語化
+
 サーバー
+
 ```
 $ locale
 LANG=C.UTF-8
@@ -123,6 +135,7 @@ LC_ALL=
 ## 各種コマンドのバージョン
 
 ### bash
+
 ```
 $ bash --version
 GNU bash, バージョン 4.4.20(1)-release (x86_64-pc-linux-gnu)
@@ -134,6 +147,7 @@ There is NO WARRANTY, to the extent permitted by law.
 ```
 
 ### awk/gawk
+
 ```
 # awkの本体を調査する
 $ which awk
@@ -151,7 +165,9 @@ $ sudo apt install gawk
 # awkがgawkを指していることを確認する
 （省略）
 ```
+
 ### sed
+
 ```
 $ sed --version
 Copyright (C) 2017 Free Software Foundation, Inc.
@@ -169,10 +185,13 @@ E-mail bug reports to: <bug-sed@gnu.org>.
 ## Webサーバーのセットアップ
 
 ### ドメインの取得
+
 - Google Domains で「technoyamada.com」を購入した。
 
 ### ホスト名の変更
+
 サーバー
+
 ```
 $ cat /etc/hostname
 tk2-114-57828
@@ -183,6 +202,7 @@ $ sudo reboot
 ```
 
 ### Apacheのインストール
+
 ```
 $ sudo apt install apache2
 $ curl http://localhost |& grep title
@@ -190,6 +210,7 @@ $ curl http://localhost |& grep title
 ```
 
 ### Apacheの情報を隠す
+
 ```
 $ sudo vim /etc/apache2/apache2.conf
 # 以下を追記
@@ -199,7 +220,9 @@ $ sudo systemctl restart apache2
 ```
 
 ### HTTPS化
+
 - [certbot instructions](https://certbot.eff.org/instructions?ws=apache&os=ubuntubionic)
+
 ```
 # certbotをインストールするため、まずはパッケージ管理ツールsnapdをインストールする
 $ sudo apt install snapd
@@ -252,7 +275,9 @@ If you like Certbot, please consider supporting our work by:
  * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
  * Donating to EFF:                    https://eff.org/donate-le
 ```
+
 - certbotが自動的に設定変更した内容を確認する
+
 ```
 $ diff -ru <保存しておいたオリジナルファイルのパス> /etc/apache2
 ./mods-enabled のみに存在: rewrite.load
@@ -286,7 +311,9 @@ diff -ru /home/takaaki/TEST/apache2/sites-enabled/bashcms2.conf ./sites-enabled/
 +RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
  </VirtualHost>
 ```
+
 - 自動更新のテスト
+
 ```
 $ sudo cerbot renew --dry-run
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -302,7 +329,9 @@ Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/bashcms2.technoyamada.com/fullchain.pem (success)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
+
 - 自動更新タイマーの確認
+
 ```
 $ systemctl list-timers
 NEXT                         LEFT          LAST                         PASSED       UNIT
@@ -319,8 +348,11 @@ Pass --all to see loaded but inactive timers, too.
 ```
 
 ### Git/GitHub
+
 - SSH の ForwardAgent を用いてローカルPCの鍵を使う
+
 ローカルPC
+
 ```
 # ~/.ssh/config
 Host sakura
