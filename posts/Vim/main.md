@@ -43,3 +43,5 @@ $ vim -R <file>
 |Ctrl+w+j|上のファイルへ|
 |Ctrl+w+k|下のファイルへ|
 |Ctrl+w+l|右のファイルへ|
+
+
