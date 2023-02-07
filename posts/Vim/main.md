@@ -3,7 +3,7 @@ Keywords:
 Copyright: (C) Takaaki Yamada
 ---
 
-# Vimのメモを貯める場所
+# Vimの知見を貯める場所
 
 ## 未分類
 
@@ -29,6 +29,8 @@ $ vim -R <file>
 ```
 
 ## ウィンドウ
+
+[コマンドラインモードについて学ぼう 〜 Vimはいいぞ！ゴリラと学ぶVim講座(4)](https://knowledge.sakura.ad.jp/22488/)
 
 ### ウィンドウの作成
 
