@@ -7,6 +7,14 @@ Copyright: (C) Takaaki Yamada
 
 ## 未分類
 
+### .vimrc
+
+```
+" 折り返した１行下にカーソルを移動する
+nnoremap j gj
+nnoremap k gk
+```
+
 ### ファイルを読取り専用で開く
 
 ```
@@ -26,6 +34,11 @@ $ vim -R <file>
 :bn  # next
 :bp  # previous
 :bN  # Nはリスト上の番号
+```
+
+
+```
+:
 ```
 
 ## ウィンドウ
