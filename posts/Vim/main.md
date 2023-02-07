@@ -43,13 +43,14 @@ $ vim -R <file>
 
 ### ウィンドウ間の移動
 
-キーマップ	Exコマンド	説明
-[N] CTRL-w j	:wincmd j	[N}個下のウィンドウに移動
-[N] CTRL-w k	:wincmd k	[N}個上のウィンドウに移動
-[N] CTRL-w h	:wincmd h	[N}個左のウィンドウに移動
-[N] CTRL-w l	:wincmd l	[N}個右のウィンドウに移動
-CTRL-w t	–	一番上のウィンドウに移動
-CTRL-w b	–	一番下のウィンドウに移動
+|キーマップ|Exコマンド|説明|
+|---|---|---|
+|[N] CTRL-w j|:wincmd j|[N}個下のウィンドウに移動|
+|[N] CTRL-w k|:wincmd k|[N}個上のウィンドウに移動|
+|[N] CTRL-w h|:wincmd h|[N}個左のウィンドウに移動|
+|[N] CTRL-w l|:wincmd l|[N}個右のウィンドウに移動|
+|CTRL-w t|–|一番上のウィンドウに移動|
+|CTRL-w b|-|一番下のウィンドウに移動|
 
 
 ## プラグイン
