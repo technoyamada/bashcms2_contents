@@ -49,7 +49,7 @@ $ vim -R <file>
 |[N] CTRL-w k|:wincmd k|[N}個上のウィンドウに移動|
 |[N] CTRL-w h|:wincmd h|[N}個左のウィンドウに移動|
 |[N] CTRL-w l|:wincmd l|[N}個右のウィンドウに移動|
-|CTRL-w t|–|一番上のウィンドウに移動|
+|CTRL-w t|-|一番上のウィンドウに移動|
 |CTRL-w b|-|一番下のウィンドウに移動|
 
 
