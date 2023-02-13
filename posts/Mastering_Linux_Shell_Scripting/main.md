@@ -320,6 +320,12 @@ exit 0
 ### 2.9.4　バージョン2：SSH
 ### 2.9.5　バージョン3：MySQL/MariaDB
 ### 2.9.6　ファイルの読み取り
+```
+while read line
+do
+  echo $line
+done < ~/bin/script1.sh    
+```
 ## 2.10　まとめ
 ## 2.11　練習問題
 
