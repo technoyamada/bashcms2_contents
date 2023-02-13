@@ -230,15 +230,91 @@ xyz
   $(touch empty.txt)
   xyz
   "END"
+```
 ## 2.4　readプロンプトを使ってスクリプトを拡張する
+```
+read -p "Enter your name: " name
+```
 ## 2.5　入力文字数を制限する
+```
+read -n1 "Press any key to exit"
+```
 ## 2.6　入力テキストの可視性を制御する
+```
+read -sn1 "Press any key to exit"
+```
 ## 2.7　オプションの受け渡し
+```
+# $ ./script1.sh -a -b -c
+while [ -n "$1" ]
+do
+  case "$1" in
+    -a) echo "-a option used" ;;
+    -b) echo "-b option used" ;;
+    -c) echo "-c option used" ;;
+     *) echo "Option $1 not an option" ;;
+  esac
+  shift
+done
+```
 ### 2.7.1　オプションとパラメーターの受け渡し
+```
+# $ ./script1.sh -a -b -c -- p1 p2 p3
+while [ -n "$1" ]
+do
+  case "$1" in
+    -a) echo "-a option used" ;;
+    -b) echo "-b option used" ;;
+    -c) echo "-c option used" ;;
+    --) shift
+        break ;;
+     *) echo "Option $1 not an option" ;;
+  esac
+  shift
+done
+
+num=1
+for param in $@
+do
+  echo "#$num: $param"
+  num=$(( $num + 1 ))
+done
+```
 ### 2.7.2　オプションの値を読み取る
+```
+while [ -n "$1" ]
+do
+  case "$1" in
+    -a) echo "-a option passed" ;;
+    -b) param="$2"
+        echo "-b option passed, with value $param" 
+        shift ;;
+    -c) echo "-c option passed" ;;
+    --) shift
+        break ;;
+     *) echo "Option $1 not an option" ;;
+  esac
+  shift
+done
+
+num=1
+for param in $@
+do
+  echo "#$num: $param"
+  num=$(( $num + 1 ))
+done
+```
 ## 2.8　標準的であること
 ## 2.9　簡単なスクリプトを使って理解を深める
 ### 2.9.1　スクリプトを使ったバックアップ
+```
+#!/bin/bash
+read -p "Which file types do you want to backup " file_suffix
+read -p "Which directory do you want to backup to " dir_name
+test -d $HOME/$dir_name || mkdir -m 700 $HOME/$dir_mode
+find $HOME/bin -path $HOME/$dir_name -prune -o -name "*$file_suffix" -exec cp {} $HOME/$dir_name/ \;
+exit 0
+```
 ### 2.9.2　サーバーへの接続
 ### 2.9.3　バージョン1：ping
 ### 2.9.4　バージョン2：SSH
