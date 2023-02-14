@@ -428,9 +428,21 @@ exit 0
 |[ "string1" != "string2" ]|string1がstring2と同じでないかどうか|
 |[ "string1" \\\< "string2" ]|string1がstring2より小さいかどうか|
 |[ "string1" \\\> "string2" ]|string1がstring2より大きいかどうか|
+|[ -n "string1" ]|string1がゼロより長いかどうか|
+|[ -z "string1" ]|string1の長さがゼロかどうか|
 ### 3.6.2　ファイルやディレクトリーのチェック
+```
+if [ -d "$mydir" ]
+```
 ### 3.6.3　数値のチェック
+```
+if [ 12 -gt 10 ]
+```
 ### 3.6.4　テストの結合
+```
+if [ -d "$mydir" ] && [ -n "$name" ]; then
+if [ -d "$mydir" ] || [ -n "$name" ]; then
+```
 ## 3.7　elifを使って条件を増やす
 ### 3.7.1　elifを使ってbackup2.shを作成する
 ## 3.8　case文の使用
