@@ -616,6 +616,21 @@ My shell is /bin/bash and the shell options are: himBHs
 |H|履歴からコマンドを繰り返すために、実行するコマンドの履歴展開（historyコマンドで確認後、!501 などのように実行）を可能にする|
 |s|コマンドを標準入力から読み込む。インタラクティブなシェルを起動するとき、位置パラメータを利用を可能にする|
 ### 5.2.3　デフォルト値の設定
+方法1
+```
+#!/bin/bash
+name="$1"
+[ -z "$1" ] && name="Anonymous"
+echo "Hello ${name}"
+exit 0
+```
+方法2
+```
+#!/bin/bash
+name=${1-"Anonymous"}
+echo "Hello ${name}"
+exit 0
+```
 ## 5.3　疑わしいときは……引用符を！
 ## 5.4　[[を使った高度なテスト
 ### 5.4.1　空白文字
