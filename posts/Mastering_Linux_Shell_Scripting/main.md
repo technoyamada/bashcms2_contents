@@ -445,6 +445,29 @@ if [ -d "$mydir" ] || [ -n "$name" ]; then
 ```
 ## 3.7　elifを使って条件を増やす
 ### 3.7.1　elifを使ってbackup2.shを作成する
+```
+#!/bin/bash -xv
+read -p "Choose H(gzip2), M(gzip) or L(tar) " file_compression
+read -p "Which directory do you want to backup to " dir_name
+test -d "$HOME/$dir_name" || mkdir -m 700 "$HOME/$dir_name"
+
+backup_dir=$HOME/$dir_name
+
+tar_h="-cjvf $backup_dir/b.tar.gzip2 --exclude $backup_dir $HOME"
+tar_m="-czvf $backup_dir/b.tar.gz --exclude $backup_dir $HOME"
+tar_l="-cvf $backup_dir/b.tar --exclude $backup_dir $HOME"
+
+if [ "$file_compression" = "H" ]; then
+  tar_opt=$tar_h
+elif [ "$file_compression" = "M" ]; then
+  tar_opt=$tar_m
+else
+  tar_opt=$tar_l
+fi
+
+tar $tar_opt
+exit 0
+```
 ## 3.8　case文の使用
 ## 3.9　レシピ：grepのフロントエンドを作成する
 ## 3.10　まとめ
