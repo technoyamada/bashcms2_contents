@@ -422,6 +422,12 @@ exit 0
 ```
 ## 3.6　testコマンドを伴うif文
 ### 3.6.1　文字列のチェック
+|式|説明|
+|---|---|
+|[ "string1" = "string2" ]|string1がstring2と同じかどうか|
+|[ "string1" != "string2" ]|string1がstring2と同じでないかどうか|
+|[ "string1" |< "string2" ]|string1がstring2より小さいかどうか|
+|[ "string1" |> "string2" ]|string1がstring2より大きいかどうか|
 ### 3.6.2　ファイルやディレクトリーのチェック
 ### 3.6.3　数値のチェック
 ### 3.6.4　テストの結合
