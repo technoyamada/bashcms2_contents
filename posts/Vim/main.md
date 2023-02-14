@@ -161,6 +161,13 @@ Ctrl + T
 
 ※追記すること
 
+## QuickFix
+
+```
+:vimgrep /<pattern>/ <file>
+:copen
+```
+
 ## プラグイン
 
 ### NERDTree
