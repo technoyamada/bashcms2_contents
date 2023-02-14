@@ -343,10 +343,51 @@ $ test $PWD == $HOME || cd $HOME
 test -z "$1" || echo "Hello $1"
 ```
 ## 3.3　シェル組み込みコマンドのtestの使用
+```
+# 引数を与えないと終了ステータスはfalseになる
+$ test; echo $?
+1
+# 基本的な構文
+$ test EXPRESSION
+# 複数の式を評価するとき
+$ test EXPRESSION -a EXPRESSION
+$ test EXPRESSION -o EXPRESSION
+# 別の書き方
+$ [ EXPRESSION ]
+```
 ### 3.3.1　文字列のテスト
+```
+# 基本的な構文
+test "$USER" = root
+[ "$USER" = root ]
+# 真偽を反転させる
+test ! "$USER" = root
+[ ! "$USER" = root ]
+# 文字列の長さを用いた真偽判定
+test -n $SSH_TTY # nonzero
+test -z $SSH_TTY # zero
+```
 ### 3.3.2　整数のテスト
+```
+test "$#" -gt 0
+[ "$#" -gt 0 ]
+```
 ### 3.3.3　ファイルの種類のテスト
+```
+# シンボリックリンク
+test -h /usr/bin/awk
+# file1 is newer than file2?
+test file1 -nt file2
+```
 ## 3.4　ifを使って条件文を作成する
+```
+if [ "$#" -lt 1 ] ; then
+  echo "Usage: $0 <name>"
+  exit 1
+fi
+echo "Hello $1"
+exit 0
+```
 ## 3.5　elseを使ってifを拡張する
 ## 3.6　testコマンドを伴うif文
 ### 3.6.1　文字列のチェック
