@@ -545,8 +545,40 @@ exit 0
 
 # 4章　コードスニペットの作成
 ## 4.1　短縮入力
+.vimrc
+```
+abbr _bash #!/bin/bash
+```
 ## 4.2　コードスニペットの使用
+例えば Vim の場合、~/snippets/if に以下のスニペットを作成しておく。
+```
+if [ -z "$1" ] ; then
+  echo "Usage: $0 <name>"
+  exit 2
+fi
+```
+Vim から呼び出す。
+```
+:r ~/snippets/if
+```
 ### 4.2.1　ターミナルに色を導入する
+例えば Vim の場合、~/snippets/if に以下のスニペットを作成しておく。
+```
+RED="\033[31m"
+GREEN="\033[32m"
+BLUE="\033[34m"
+RESET="\033[0m"
+```
+スクリプト内で読み込む。
+```
+#!/bin/bash
+source $HOME/snippets/color
+if [ -z "$1" ] ; then
+  echo -e "${RED}Usage: $0 <name>${RESET}"
+  exit 2
+fi
+echo "Hello $1"
+```
 ## 4.3　VS Codeを使ったスニペットの作成
 ## 4.4　まとめ
 ## 4.5　練習問題
