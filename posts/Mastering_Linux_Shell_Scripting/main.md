@@ -389,6 +389,15 @@ echo "Hello $1"
 exit 0
 ```
 ## 3.5　elseを使ってifを拡張する
+```
+if [ "$#" -lt 1 ] ; then
+  read -p "Enter a name: " name
+else
+  name="$1"
+fi
+echo "Hello ${name}"
+exit 0
+```
 ## 3.6　testコマンドを伴うif文
 ### 3.6.1　文字列のチェック
 ### 3.6.2　ファイルやディレクトリーのチェック
