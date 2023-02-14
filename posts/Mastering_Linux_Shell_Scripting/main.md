@@ -624,7 +624,7 @@ name="$1"
 echo "Hello ${name}"
 exit 0
 ```
-方法2
+方法2（パラメータ置換）
 ```
 #!/bin/bash
 name=${1-"Anonymous"}
