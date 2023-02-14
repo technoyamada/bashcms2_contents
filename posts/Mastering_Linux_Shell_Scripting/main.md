@@ -372,6 +372,14 @@ test -z $SSH_TTY # zero
 test "$#" -gt 0
 [ "$#" -gt 0 ]
 ```
+|式|
+|---|
+|number1 -eq number2|
+|number1 -ge number2|
+|number1 -gt number2|
+|number1 -le number2|
+|number1 -lt number2|
+|number1 -ne number2|
 ### 3.3.3　ファイルの種類のテスト
 ```
 # シンボリックリンク
