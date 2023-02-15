@@ -666,7 +666,23 @@ $ echo $((2+3))
 5
 ```
 ### 5.5.2　パラメーター操作
+```
+$ COUNT=1
+$ ((COUNT++))
+$ echo $COUNT
+2
+$ COUNT=10
+$ ((COUNT=COUNT-1))
+$ echo $COUNT
+```
 ### 5.5.3　標準的な算術テスト
+二重丸括弧内では、-gt の代わりに > が利用できる。
+```
+$ COUNT=10
+$ ((COUNT--))
+$ ((COUNT > 1)) && echo "Count is greater than 1"
+Count is greater than 1
+```
 ## 5.6　まとめ
 ## 5.7　練習問題
 
