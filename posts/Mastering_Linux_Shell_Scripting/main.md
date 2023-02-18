@@ -726,6 +726,18 @@ exit 0
 ```
 ## 6.4　ディレクトリーとファイルのチェック
 ```
+#!/bin/bash
+for path in ./\*
+do
+  if [ -d "$path" ]
+  then
+    echo "$path is a directory"
+  elif [ -f "$path" ]
+  then
+    echo "$path is a file"
+  fi
+done
+```
 ## 6.5　C言語スタイルのforループ
 ## 6.6　ネストされたループ
 ## 6.7　ループの出力結果のリダイレクト
