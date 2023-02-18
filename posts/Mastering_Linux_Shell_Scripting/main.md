@@ -688,9 +688,44 @@ Count is greater than 1
 
 # 6章　ループを使った反復処理
 ## 6.1　forループ
+for ループの右側のリストから順に値が読み込まれる。
+```
+$ for u in bob alex ; do echo "$u"; done
+bob
+alex
+```
+特殊変数 $@ を使って
+```
+#!/bin/bash
+echo "You are using $(basename $0)"
+for name in "$@"
+do
+  echo "Hello ${name}"
+done
+exit 0
+```
+リストを動的に生成することもでき、さまざまなファイル取得のテクニックを利用することができる。
+```
+$ for f in * ; do ls -l "$f"; done
+-rwxrwxr-x 1 takaaki takaaki 299  2月 13 15:44 backup.sh
+-rwxrwxr-x 1 takaaki takaaki 599  2月 14 15:56 search.sh
+-rwxrwxr-x 1 takaaki takaaki 133  2月 15 07:09 test.sh
+```
 ## 6.2　高度なforループ
 ## 6.3　IFS（内部フィールドセパレーター）
+エスケープ文字として解釈させるにはドル記号と一緒に単一引用符を使う必要がある。二重引用符ではエスケープ文字として解釈されない。
+```
+#!/bin/bash
+file="file1.txt"
+IFS=$'\n'
+for var in $(cat "${file}")
+do
+  echo " $var"
+done
+exit 0
+```
 ## 6.4　ディレクトリーとファイルのチェック
+```
 ## 6.5　C言語スタイルのforループ
 ## 6.6　ネストされたループ
 ## 6.7　ループの出力結果のリダイレクト
