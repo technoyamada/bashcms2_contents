@@ -690,6 +690,7 @@ Count is greater than 1
 
 # 6章　ループを使った反復処理
 ## 6.1　forループ
+あるリストについて繰り返し処理を行う。
 for ループの右側のリストから順に値が読み込まれる。
 ```
 $ for u in bob alex ; do echo "$u"; done
@@ -803,6 +804,18 @@ done
 echo "directory name(s): $dir_name"
 ```
 ## 6.8　whileループとuntilループ
+- forループがあるリストについて繰り返し処理を行うのに対して、whileループとuntilループは、条件が真または偽になるという事実に基づいてループ処理を行うことができる。
+- whileループは条件が真である限り繰り返し、逆にuntilループは偽である限り繰り返す。
+```
+#!/bin/bash
+COUNT=10
+while (( COUNT >=0 ))
+do
+  echo -e "$COUNT \c" # \c: produce no further output（改行を抑制）
+  (( COUNT-- ))
+done
+echo
+```
 ## 6.9　ファイルからの入力の読み込み
 ## 6.10　オペレーター用メニューの作成
 ## 6.11　まとめ
