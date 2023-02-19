@@ -748,7 +748,7 @@ for (v = 0; v < 5; v++)
   print("Value is %d\n", v);
 }    
 ```
-bashでインクリメントするには算術演算
+bashでインクリメントするには、二重丸括弧で算術演算を利用する。
 ```
 #!/bin/bash
 for (( v=1; v <= 10; v++ ))
@@ -757,8 +757,51 @@ do
 done
 ```
 ## 6.6　ネストされたループ
+```
+#!/bin/bash
+for (( v1 = 1; v1 <= 5; v1++ ))
+do
+  echo "First loop $v1: "
+  for (( v2 = 1; v2 <= 3; v2++ ))
+  do
+    echo " Second loop: $v2"
+  done
+done
+```
 ## 6.7　ループの出力結果のリダイレクト
+```
+#!/bin/bash
+for (( v1 = 1; v1 <= 5; v1++ ))
+do
+  echo "First loop $v1: "
+  for (( v2 = 1; v2 <= 3; v2++ ))
+  do
+    echo " Second loop: $v2"
+  done
+done > file
+```
 ### 6.7.1　ループの制御
+|コマンド|説明|
+|---|---|
+|break|それ以降のリストの項目を処理することなく、ループから抜け出す|
+|continue|ループないの現在のリスト項目の処理を中止し、次のリスト項目を使って処理を再開する|
+```
+#!/bin/bash
+for f in \*;
+do
+  [ -d "$f" ] && break
+done
+echo "We have found a directory: $f"
+```
+```
+#!/bin/bash
+for f in \*;
+do
+  [ -d "$f" ] || continue
+  dir_name="$dir_name $f"
+done
+echo "directory name(s): $dir_name"
+```
 ## 6.8　whileループとuntilループ
 ## 6.9　ファイルからの入力の読み込み
 ## 6.10　オペレーター用メニューの作成
