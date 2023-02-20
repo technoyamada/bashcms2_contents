@@ -817,7 +817,38 @@ done
 echo
 ```
 ## 6.9　ファイルからの入力の読み込み
+```
+#!/bin/bash
+if [ ! -f "$1" ]; then
+  echo "The input to $0 should be a filename"
+  exit 1
+fi
+echo "The following servers are up on $(date +%x)" > server.out
+while read server
+do
+  ping -c1 "$server" > /dev/null && echo "Server up: $server" >> server.out
+done < "$1"
+cat server.out
+```
 ## 6.10　オペレーター用メニューの作成
+```
+#!/bin/bash
+while true
+do
+  clear
+  echo "Choose an item: a, b or c"
+  echo "a: Backup"
+  echo "b: Display Calendar"
+  echo "c: Exit"
+  read -sn1
+  case "$REPLY" in
+    a) tar -C $HOME/bin -czvf $HOME/bin/backup.tgz $HOME/bin/tmp;;
+    b) cal;;
+    c) exit 0;;
+  esac
+  read -n1 -p "Press any key to continue"
+done
+```
 ## 6.11　まとめ
 ## 6.12　練習問題
 
