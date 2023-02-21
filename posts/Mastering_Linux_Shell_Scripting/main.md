@@ -894,6 +894,17 @@ clean_file "$REPLY"
 exit 1
 ```
 ### 7.2.1　配列の引き渡し
+```
+#!/bin/bash
+my_func() {
+  arr="$@"
+  echo "The array from inside the function: ${arr[\*]}"
+}
+
+my_arr=(5 10 15)
+echo "The original array is: ${my_arr[\*]}"
+my_func ${my_arr[\*]}
+```
 ## 7.3　変数のスコープ
 ## 7.4　関数から値を返す
 ## 7.5　再帰関数
