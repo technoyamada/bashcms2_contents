@@ -894,11 +894,12 @@ clean_file "$REPLY"
 exit 1
 ```
 ### 7.2.1　配列の引き渡し
+配列を渡すには $@ を用いる。$1 を用いると、最初の配列要素だけが渡される。
 ```
 #!/bin/bash
 my_func() {
   arr=$@
-  echo "The array from inside the function: ${arr[\*]}"
+  echo "The array from inside the function: ${arr[*]}"
 }
 
 my_arr=(5 10 15)
