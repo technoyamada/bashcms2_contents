@@ -922,8 +922,8 @@ echo $myvar
 - returnコマンドで終了ステータスを返す
 - echoコマンドで標準出力に出力する
 ```
-# returnを用いる方法終了
-# $?の値は$変数$statusに代入して使用すること。ステータスは刻々と変化するため。
+# returnを用いる方法
+# $?の値は$変数$statusに代入して使用すること。終了ステータスは刻々と変化するため。
 #!/bin/bash
 check_file() {
   if [ -f "$1" ] ; then
@@ -971,7 +971,61 @@ done
 echo "Finished"
 ```
 ## 7.5　再帰関数
+```
+#!/bin/bash
+calc_factorial() {
+  if [ $1 = 1 ] ; then
+    echo 1
+  else
+    local var=$(( $1 - 1 ))
+    local res=$(calc_factorial $var)
+    echo $(( $res * $1 ))
+  fi
+}
+
+read -p "Enter a number: " val
+factorial=$(calc_factorial $val)
+echo "The factorial of $val is: $factorial"
+```
 ## 7.6　メニューでの関数の使用
+```
+#!/bin/bash
+to_lower() {
+  input="$1"
+  output=$(echo $input | tr [A-Z] [a-z])
+  echo $output
+}
+
+do_backup() {
+  tar -C $HOME/bin -czvf $HOME/bin//backup.tgz $HOME/bin/tmp
+}
+
+show_cal() {
+  if [ -x /usr/bin/ncal ] ; then
+    command="/usr/bin/ncal -w"
+  else
+    command="/usr/bin/cal"
+  fi
+  $command
+}
+
+while true
+do
+  clear
+  echo "Choose an item: a, b or c"
+  echo "a: Backup"
+  echo "b: Display Calendar"
+  echo "c: Exit"
+  read -sn1
+  REPLY=$(to_lower $REPLY)
+  case "$REPLY" in
+    a) do_backup;;
+    b) show_cal;;
+    c) exit 0;;
+  esac
+  read -n1 -p "Press any key to continue"
+done
+```
 ## 7.7　まとめ
 ## 7.8　練習問題
 
