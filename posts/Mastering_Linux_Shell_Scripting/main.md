@@ -858,7 +858,7 @@ done
 ```
 $ declare -F
 ```
-関数の定義の仕方は２種類あるが、functionキーワードを使う方法は、POSIX仕様との移植性のため推奨されていない。
+関数の定義方法は２種類あるが、functionキーワードを使う方法は、POSIX仕様との移植性のため推奨されていない。
 ```
 # 推奨
 function_name() {
@@ -897,7 +897,7 @@ exit 1
 ```
 #!/bin/bash
 my_func() {
-  arr="$@"
+  arr=$@
   echo "The array from inside the function: ${arr[\*]}"
 }
 
@@ -906,7 +906,70 @@ echo "The original array is: ${my_arr[\*]}"
 my_func ${my_arr[\*]}
 ```
 ## 7.3　変数のスコープ
+デフォルトでは、関数内で宣言した変数もすべてグローバル変数。
+```
+#!/bin/bash
+myvar=30
+myfunc() {
+  local myvar=10
+}
+myfunc
+echo $myvar
+```
 ## 7.4　関数から値を返す
+関数から値を返す方法
+- グローバル変数に代入する
+- returnコマンドで終了ステータスを返す
+- echoコマンドで標準出力に出力する
+echoを用いる方法
+```
+#!/bin/bash
+to_lower()
+{
+  input="$1"
+  output=$(echo $input | tr [A-Z] [a-z])
+  echo $output
+}
+
+while true
+do
+  read -p "Enter c to continue or q to exit: "
+  REPLY=$(to_lower "$REPLY")
+  if [ $REPLY = "q" ] ; then
+    break
+  fi
+done
+echo "Finished"
+```
+returnを用いる方法
+- $?の値は$変数$statusに代入して使用すること。終了ステータスは刻々と変化する。
+```
+#!/bin/bash
+check_file() {
+  if [ -f "$1" ] ; then
+    return 0
+  elif [ -d "$1" ] ; then
+    return 1
+  else
+    return 2
+  fi
+}
+
+if [ -z "$1" ] ; then
+  echo "Usage: $0 file"
+  exit 1
+fi
+
+check_file "$1"
+status=$?
+if [ $status = 0 ] ; then
+  echo "$1 is a regular file"
+elif [ $status = 1 ] ; then
+  echo "$1 is a directory"
+else
+  echo "$1 is a device file"
+fi
+```
 ## 7.5　再帰関数
 ## 7.6　メニューでの関数の使用
 ## 7.7　まとめ
