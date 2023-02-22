@@ -921,29 +921,9 @@ echo $myvar
 - グローバル変数に代入する
 - returnコマンドで終了ステータスを返す
 - echoコマンドで標準出力に出力する
-echoを用いる方法
 ```
-#!/bin/bash
-to_lower()
-{
-  input="$1"
-  output=$(echo $input | tr [A-Z] [a-z])
-  echo $output
-}
-
-while true
-do
-  read -p "Enter c to continue or q to exit: "
-  REPLY=$(to_lower "$REPLY")
-  if [ $REPLY = "q" ] ; then
-    break
-  fi
-done
-echo "Finished"
-```
-returnを用いる方法
-- $?の値は$変数$statusに代入して使用すること。終了ステータスは刻々と変化する。
-```
+# returnを用いる方法終了
+# $?の値は$変数$statusに代入して使用すること。ステータスは刻々と変化するため。
 #!/bin/bash
 check_file() {
   if [ -f "$1" ] ; then
@@ -969,6 +949,26 @@ elif [ $status = 1 ] ; then
 else
   echo "$1 is a device file"
 fi
+```
+```
+# echoを用いる方法
+#!/bin/bash
+to_lower()
+{
+  input="$1"
+  output=$(echo $input | tr [A-Z] [a-z])
+  echo $output
+}
+
+while true
+do
+  read -p "Enter c to continue or q to exit: "
+  REPLY=$(to_lower "$REPLY")
+  if [ $REPLY = "q" ] ; then
+    break
+  fi
+done
+echo "Finished"
 ```
 ## 7.5　再帰関数
 ## 7.6　メニューでの関数の使用
