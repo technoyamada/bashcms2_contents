@@ -884,7 +884,7 @@ clean_file() {
   is_file "$1"
   BEFORE=$(wc -l "$1")
   echo "The file $1 starts with $BEFORE"
-  sed -i.bak '/^\s\*#/d;/^$/d' "$1"
+  sed -i.bak '/^\s*#/d;/^$/d' "$1"
   AFTER=$(wc -l "$1")
   echo "The file $1 is now $AFTER"
 }
@@ -902,8 +902,8 @@ my_func() {
 }
 
 my_arr=(5 10 15)
-echo "The original array is: ${my_arr[\*]}"
-my_func ${my_arr[\*]}
+echo "The original array is: ${my_arr[*]}"
+my_func ${my_arr[*]}
 ```
 ## 7.3　変数のスコープ
 デフォルトでは、関数内で宣言した変数もすべてグローバル変数。
