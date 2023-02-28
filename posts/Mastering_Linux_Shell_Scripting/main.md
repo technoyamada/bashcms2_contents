@@ -1033,8 +1033,39 @@ done
 # 8章　ストリームエディターの導入
 ## 8.1　grepを使ってテキストを表示する
 ### 8.1.1　インターフェース上の受信データの表示
+```
+$ ifconfig ens3 | grep -i "rx packets"
+        RX packets 125635299  bytes 8986671979 (8.9 GB)
+```
 ### 8.1.2　ユーザーアカウントデータの表示
+```
+$ grep "$USER" /etc/passwd
+takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/bash
+```
+```
+#!/bin/bash
+read -p "Enter a user name: "
+if (grep "$REPLY" /etc/passwd > /dev/null) ; then
+  echo "The user $USER exists"
+exit 0
+fi
+```
 ### 8.1.3　システム内のCPU数の表示
+マッチする行を表示せず個数を返す。
+```
+$ cat /proc/cpuinfo | grep -c name
+2
+```
+```
+#!/bin/bash
+source $HOME/bin/tmp/function.sh
+check_core 4
+read -p "Enter a user name: "
+if (grep "$REPLY" /etc/passwd > /dev/null) ; then
+  echo "The user $USER exists"
+exit 0
+fi
+```
 ### 8.1.4　CSVファイルの解析
 ## 8.2　sedの基礎を理解する
 ### 8.2.1　置換コマンド
