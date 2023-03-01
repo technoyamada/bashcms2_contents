@@ -1134,6 +1134,25 @@ $ sed '3,5d' inputfile
 $ sed '4,$d' inputfile
 ```
 ### 8.3.2　挿入コマンドと追加コマンド
+```
+$ cat sample-code/ch08/myfile3
+First line
+Second line
+Third line
+Fourth line
+$ sed '2i\*** inserted ***' sample-code/ch08/myfile3
+First line
+*** inserted ***
+Second line
+Third line
+Fourth line
+$ sed '2a\*** inserted ***' sample-code/ch08/myfile3
+First line
+Second line
+*** inserted ***
+Third line
+Fourth line
+```
 ### 8.3.3　変更コマンド
 ### 8.3.4　変換コマンド
 ## 8.4　sedの複数のコマンド
