@@ -1067,6 +1067,22 @@ exit 0
 fi
 ```
 ### 8.1.4　CSVファイルの解析
+色を指定する場合は、「ESC[色属性m」と「ESC[0m or ESC[m」で囲む。\eと\033はESC文字を表す。
+- \e[{色番号}m\e[m
+- \033[{色番号}m\033[m
+```
+#!/bin/bash
+OLDIFS="$IFS"
+IFS=","
+while read product price quantity
+do
+  echo -e "\e[1;34m${product} \
+          =====\e[0m\n\
+  price : \t ${price} \n\
+  quantity : \t ${quantity}\n"
+done < "$1"
+IFS="$OLDIFS"
+```
 ## 8.2　sedの基礎を理解する
 ### 8.2.1　置換コマンド
 ### 8.2.2　グローバル置換
