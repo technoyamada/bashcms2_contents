@@ -1090,17 +1090,48 @@ $ sed -n '1,3 p' /etc/passwd
 $ sed -n '/^takaaki/ p' /etc/passwd
 ```
 ### 8.2.1　置換コマンド
-sed 's/パターン/置換文字列/フラグ
+sed 's/パターン/置換文字列/フラグ'
 |フラグ|内容|
 |---|---|
 |p|置換が行われた場合に痴漢語の文字列を出力する|
 |g|すべての出現箇所を置換する|
 |w|結果をファイルに書き出す|
 ### 8.2.2　グローバル置換
+```
+$ sed 's/sed/Linux sed/g' inputfile
+$ sed 's/sed/Linux sed/gw outfile' inputfile
+```
 ### 8.2.3　置換の限定
+```
+$ sed '2s/old/new/' inputfile
+
+$ sed '3,5s/old/new/' inputfile
+
+$ sed '2,$s/old/new' inputfile
+```
 ### 8.2.4　ファイルの編集
+- 結果をファイルに出力するには wフラグ を使うが、ファイルそのものを編集するには、-i オプションを使う。
+- -nオプション や pコマンド は不要
+```
+$ cat inputfile 
+takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/bash
+$ sed -i 's;/bin/bash;/bin/zsh;' inputfile 
+$ cat inputfile 
+takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/zsh
+```
+- バックアップファイルを作成する場合は、-iオプションに適当なsuffixを指定すれば良い。
+```
+$ sed -i.bak 's;/bin/bash;/bin/zsh;' inputfile 
+```
 ## 8.3　sedのその他のコマンド
 ### 8.3.1　削除コマンド
+```
+# 3行目を削除する
+$ sed '3d' inputfile
+# 3〜5行目を削除する
+$ sed '3,5d' inputfile
+# 4行目から最後まで削除する
+$ sed '4,$d' inputfile
 ### 8.3.2　挿入コマンドと追加コマンド
 ### 8.3.3　変更コマンド
 ### 8.3.4　変換コマンド
