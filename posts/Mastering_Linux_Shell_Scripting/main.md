@@ -1156,6 +1156,7 @@ Third line
 Fourth line
 ```
 ### 8.3.3　変更コマンド
+行全体を置き換える。
 ```
 $ sed '2c\*** modified ***' sample-code/ch08/myfile3 
 First line
@@ -1164,7 +1165,20 @@ Third line
 Fourth line
 ```
 ### 8.3.4　変換コマンド
+trコマンド のような働き。
+```
+$ echo 'This is an abc test' | sed 'y/b/B/'
+This is an aBc test
+```
 ## 8.4　sedの複数のコマンド
+-eオプション を用いて、コマンドを ; で区切る。
+```
+$ sed -e 's/First/1st/; s/Second/2nd/' sample-code/ch08/myfile3
+1st line
+2nd line
+Third line
+Fourth line
+```
 ## 8.5　まとめ
 ## 8.6　練習問題
 
