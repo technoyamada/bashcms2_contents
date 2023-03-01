@@ -1140,12 +1140,14 @@ First line
 Second line
 Third line
 Fourth line
+# iコマンド: 指定行の前に挿入する
 $ sed '2i\*** inserted ***' sample-code/ch08/myfile3
 First line
 *** inserted ***
 Second line
 Third line
 Fourth line
+# aコマンド: 指定行の後ろに挿入する
 $ sed '2a\*** inserted ***' sample-code/ch08/myfile3
 First line
 Second line
@@ -1154,6 +1156,13 @@ Third line
 Fourth line
 ```
 ### 8.3.3　変更コマンド
+```
+$ sed '2c\*** modified ***' sample-code/ch08/myfile3 
+First line
+*** modified ***
+Third line
+Fourth line
+```
 ### 8.3.4　変換コマンド
 ## 8.4　sedの複数のコマンド
 ## 8.5　まとめ
