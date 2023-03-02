@@ -1187,7 +1187,33 @@ Fourth line
 ## 9.2　Apacheの名前ベースのバーチャルホスト
 ### 9.2.1　バーチャルホストのテンプレートの作成
 ### 9.2.2　最初のステップ
+行番号を表示して出力する。
+```
+$ sed = httpd.conf | sed 'N;s/\n/ /'
+```
 ### 9.2.3　行の取り出し
+行番号を指定する方法
+```
+$ sed -n '355,361 p' httpd.conf 
+#<VirtualHost *:80>
+#    ServerAdmin webmaster@dummy-host.example.com
+#    DocumentRoot /www/docs/dummy-host.example.com
+#    ServerName dummy-host.example.com
+#    ErrorLog logs/dummy-host.example.com-error_log
+#    CustomLog logs/dummy-host.example.com-access_log common
+#</VirtualHost>
+```
+開始タグと終了タグを検索する方法
+```
+$ sed -n '/#<VirtualHost[^>]*>/,/^#<\/VirtualHost>/p' httpd.conf
+#<VirtualHost *:80>
+#    ServerAdmin webmaster@dummy-host.example.com
+#    DocumentRoot /www/docs/dummy-host.example.com
+#    ServerName dummy-host.example.com
+#    ErrorLog logs/dummy-host.example.com-error_log
+#    CustomLog logs/dummy-host.example.com-access_log common
+#</VirtualHost>
+```
 ### 9.2.4　sedスクリプトファイル
 ## 9.3　バーチャルホストの作成の自動化
 ### 9.3.1　サイト作成時にデータ入力を促す
