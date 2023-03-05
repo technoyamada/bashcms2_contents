@@ -1215,8 +1215,57 @@ $ sed -n '/#<VirtualHost[^>]*>/,/^#<\/VirtualHost>/p' httpd.conf
 #</VirtualHost>
 ```
 ### 9.2.4　sedスクリプトファイル
+vh.sed
+```
+/#<VirtualHost[^>]*>/,/^#<\/VirtualHost>/ {
+s/^#//
+w template.txt
+}
+```
+```
+$ sed -nf vh.sed httpd.conf
+$ cat template.txt 
+<VirtualHost *:80>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot /www/docs/dummy-host.example.com
+    ServerName dummy-host.example.com
+    ErrorLog logs/dummy-host.example.com-error_log
+    CustomLog logs/dummy-host.example.com-access_log common
+</VirtualHost>
+```
 ## 9.3　バーチャルホストの作成の自動化
+```
+#!/bin/bash
+WEBDIR=/www/docs
+CONFDIR=/etc/httpd/conf.d
+TEMPLATE=$HOME/template.txt
+[ -d $CONFDIR ] || mkdir -p $CONFDIR
+sed s/dummy-host.example.com/$1/ $TEMPLATE > $CONFDIR/$1.conf
+mkdir -p $WEBDIR/$1
+echo "New site for $1" > $WEBDIR/$1/index.html
+```
 ### 9.3.1　サイト作成時にデータ入力を促す
+- ${REPLY^^} で、$REPLY変数を大文字に変換している。
+- sed -i で、マッチした行の前にテキストを追加している。
+```
+#!/bin/bash
+WEBDIR=/www/docs/$1
+CONFDIR=/etc/httpd/conf.d
+CONFFILE=$CONFDIR/$1.conf
+TEMPLATE=$HOME/template.txt
+[ -d $CONFDIR ] || mkdir -p $CONFDIR
+sed s/dummy-host.example.com/$1/ $TEMPLATE > $CONFDIR/$1.conf
+mkdir -p $WEBDIR/$1
+echo "New site for $1" > $WEBDIR/$1/index.html
+read -p "Do you want to restrict access to this site? y/n "
+[ ${REPLY^^} = 'N' ] && exit 0
+read -p "Which network should we restrict access to: " NETWORK
+sed -i "<\/VitualHost>/i <Directory $WEBDIR >\
+  \n  Order allow,deny\
+  \n  Allow from 127.0.0.1\
+  \n  Allow from $NETWORK\
+  \n</Directory>" $CONFFILE
+```
 ## 9.4　まとめ
 ## 9.5　練習問題
 
