@@ -70,6 +70,7 @@ $ cat 9/log_range.log | awk '$4" "$5 >= "[24/Dec/2016 21:00:00]" && $4" "$5 < "[
 192.168.110.169 - - [25/Dec/2016 03:06:54] "GET / HTTP/1.0" 200 3461
 ```
 ##### 問題10　見出しの記法の変換
+正規表現「+」は拡張正規表現の記号なので、-r または -E が必要。
 ```
 $ cat headings.md 
 # AAA
@@ -90,6 +91,30 @@ $ cat headings.md
 これはDDDです
 
 $ cat headings.md | sed -E 's/^##\s+(.*)/\1\n---/' | sed -E 's/^#\s+(.*)/\1\n===/'
+AAA
+===
+
+これはAAAです
+
+BBB
+===
+
+これはBBBです。
+楽しいですね。
+
+CCC
+---
+
+これはCCCCです
+
+DDD
+---
+
+これはDDDです
+```
+Pandocを用いた例
+```
+$ pandoc headings.md --from markdown+hard_line_breaks --to markdown+hard_line_breaks
 AAA
 ===
 
