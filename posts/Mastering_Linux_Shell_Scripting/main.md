@@ -1386,6 +1386,19 @@ Mean value:  204.333
 Mean value:  271
 ```
 ## 10.5　出力結果の書式設定
+```
+$ awk 'BEGIN{ FS = ":"; printf "%20s %8s %20s\n", "Name", "UID", "Shell" }{ printf "%20s %8d %20s\n", $1, $3, $7 }' /etc/passwd | head
+                Name      UID                Shell
+                root        0            /bin/bash
+              daemon        1    /usr/sbin/nologin
+                 bin        2    /usr/sbin/nologin
+                 sys        3    /usr/sbin/nologin
+                sync        4            /bin/sync
+               games        5    /usr/sbin/nologin
+                 man        6    /usr/sbin/nologin
+                  lp        7    /usr/sbin/nologin
+                mail        8    /usr/sbin/nologin
+```                
 ## 10.6　UIDを使ってユーザー表示をさらにフィルタリングする
 ## 10.7　AWKの制御ファイル
 ### 10.7.1　組み込み関数
