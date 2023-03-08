@@ -1335,6 +1335,15 @@ $ awk '
 Welcome To shell scripting
 ```
 ## 10.4　条件文
+```
+$ awk '{if ($1 > 50) { x = $1 * 2; print x } else { x = $1 * 3; print x }}' inputfile
+150
+90
+160
+140
+60
+180
+```
 ### 10.4.1　if文
 ### 10.4.2　whileループ
 ### 10.4.3　forループ
