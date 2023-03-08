@@ -1270,6 +1270,10 @@ sed -i "<\/VitualHost>/i <Directory $WEBDIR >\
 ## 9.5　練習問題
 
 # 10章　AWKの基礎
+AWKは
+- テキストファイルを1行ずつ読み込む
+- メインブロックのコードは、行の基準にマッチする各行に対して実行される
+- BEGINブロックとENDブロックのコードは一度だけ実行される
 ## 10.1　AWKの背後にある歴史
 ## 10.2　ファイルの内容の表示とフィルタリング
 - awkが用意している変数
@@ -1426,7 +1430,31 @@ nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/bash
 ```
 ## 10.7　AWKの制御ファイル
+10.5の内容を passwdawk に保存すれば制御ファイルとして利用できるようになる。
+```
+function green(s) {
+  printf "\033[1;32m" s "\033[0m"
+}
+BEGIN { 
+  FS=":";
+  green("      Name       UID     Shell\n")
+}
+{ 
+  printf "%10s %10d %10s\n", $1, $3, $7 
+}
+```
+呼び出し方は次の通り。
+```
+$ awk -f passwd.awk /etc/passwd
+```
 ### 10.7.1　組み込み関数
+```
+$ awk 'BEGIN{ x = sqrt(5); print x }'
+2.23607
+
+$ awk 'BEGIN{ x = "welcome"; print toupper(x) }'
+WELCOME
+```
 ## 10.8　まとめ
 ## 10.9　練習問題
 
