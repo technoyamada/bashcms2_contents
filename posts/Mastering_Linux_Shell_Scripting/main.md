@@ -1308,6 +1308,11 @@ $ awk '/bash$/' /etc/passwd
 |NF|現在のレコードのフィールド数を保持する|
 |FNR|現在のファイルにおいて処理したレコードの数を保持する|
 |IGNORECASE|大文字と小文字を区別しない|
+```
+$ cat sample-code/ch10/myfile1 | awk 'BEGIN{RS=""; FS="\n"; OFS=" | "} {print FNR,$1,$3}'
+1 | John Doe | (123) 455-3584
+2 | Mokhtar Ebrahim | (456) 352-3541
+```
 ### 10.3.1　ユーザー定義変数
 ## 10.4　条件文
 ### 10.4.1　if文
