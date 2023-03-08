@@ -1419,6 +1419,12 @@ green("      Name       UID     Shell\n")}
       mail          8 /usr/sbin/nologin
 ```
 ## 10.6　UIDを使ってユーザー表示をさらにフィルタリングする
+比較演算子を使う
+```
+$ awk -F":" '$3 > 999' /etc/passwd
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/bash
+```
 ## 10.7　AWKの制御ファイル
 ### 10.7.1　組み込み関数
 ## 10.8　まとめ
