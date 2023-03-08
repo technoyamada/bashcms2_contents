@@ -1307,6 +1307,7 @@ $ awk '/bash$/' /etc/passwd
 |FILENAME|処理されるファイル名を保持する|
 |NF|現在のレコードのフィールド数を保持する|
 |FNR|現在のファイルにおいて処理したレコードの数を保持する|
+|NR|現在までに処理したレコードの数を保持する|
 |IGNORECASE|大文字と小文字を区別しない|
 ```
 $ cat sample-code/ch10/myfile1 | awk 'BEGIN{RS=""; FS="\n"; OFS=" | "} {print FNR,$1,$3}'
@@ -1347,7 +1348,6 @@ $ awk '{if ($1 > 50) { x = $1 * 2; print x } else { x = $1 * 3; print x }}' inpu
 ```
 ### 10.4.2　whileループ
 AWKではファイルのすべての行を処理するが、各行のフィールドに対して処理を繰り返したい場合は、whileループを用いる。
-### 10.4.3　forループ
 ```
 $ cat sample-code/ch10/myfile4
 321 524 124
@@ -1357,12 +1357,27 @@ $ cat sample-code/ch10/myfile4
 $ awk '{                      
 total = 0
 i = 1
-while (i < 4)
+while (i <= NF)
 {
 total += $i
 i++
 }
 mean = total / 3
+print "Mean value: ", mean
+}' sample-code/ch10/myfile4
+Mean value:  323
+Mean value:  204.333
+Mean value:  271
+```
+### 10.4.3　forループ
+```
+$ awk '{
+total = 0
+for (field = 1; field <= NF; field++)
+{
+total += $field
+}
+mean = total / NF
 print "Mean value: ", mean
 }' sample-code/ch10/myfile4
 Mean value:  323
