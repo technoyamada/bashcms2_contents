@@ -1314,6 +1314,26 @@ $ cat sample-code/ch10/myfile1 | awk 'BEGIN{RS=""; FS="\n"; OFS=" | "} {print FN
 2 | Mokhtar Ebrahim | (456) 352-3541
 ```
 ### 10.3.1　ユーザー定義変数
+```
+$ awk '
+> BEGIN{
+> var1=2
+> var2=3
+> var3= var1 + var2
+> print var3
+> }'
+5
+```
+```
+$ awk '
+> BEGIN{
+> str1 = "Welcome"
+> str2 = " To shell scripting"
+> str3 = str1 str2
+> print str3
+> }'
+Welcome To shell scripting
+```
 ## 10.4　条件文
 ### 10.4.1　if文
 ### 10.4.2　whileループ
