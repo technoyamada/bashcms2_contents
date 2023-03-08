@@ -1348,6 +1348,27 @@ $ awk '{if ($1 > 50) { x = $1 * 2; print x } else { x = $1 * 3; print x }}' inpu
 ### 10.4.2　whileループ
 AWKではファイルのすべての行を処理するが、各行のフィールドに対して処理を繰り返したい場合は、whileループを用いる。
 ### 10.4.3　forループ
+```
+$ cat sample-code/ch10/myfile4
+321 524 124
+174 185 254
+195 273 345
+
+$ awk '{                      
+total = 0
+i = 1
+while (i < 4)
+{
+total += $i
+i++
+}
+mean = total / 3
+print "Mean value: ", mean
+}' sample-code/ch10/myfile4
+Mean value:  323
+Mean value:  204.333
+Mean value:  271
+```
 ## 10.5　出力結果の書式設定
 ## 10.6　UIDを使ってユーザー表示をさらにフィルタリングする
 ## 10.7　AWKの制御ファイル
