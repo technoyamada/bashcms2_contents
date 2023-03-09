@@ -1466,11 +1466,23 @@ Linuxでは2つの正規表現エンジンを使うことができる。
 - BRE (Basic Regular Expression)
 - ERE (Extended Regular Expression)
 ## 11.2　BREパターンの定義
+次の文字にマッチさせる場合はエスケープする必要がある。
+```
+. * [ ] ^ $ { } \ + ? | ( )
+```
 ### 11.2.1　アンカー文字
 |正規表現|説明|
 |---|---|
 |^|行の先頭|
 |$|行の末尾|
+空行以外を抜き出す。
+```
+$ cat sample-code/ch11/myfile1 | awk '!/^$/ {print $0}'
+Lorem Ipsum is simply dummy text .
+Lorem Ipsum has been the industry's standard dummy.
+It has survived not only five centuries
+It is a long established fact that a reader will be distracted.
+```
 ### 11.2.2　ドット文字
 
 ### 11.2.3　文字クラス
