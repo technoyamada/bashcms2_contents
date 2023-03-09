@@ -1475,7 +1475,9 @@ Linuxでは2つの正規表現エンジンを使うことができる。
 |---|---|
 |^|行の先頭|
 |$|行の末尾|
-- 空行以外を抜き出す。
+
+空行以外を抜き出す。
+
 ```
 $ cat sample-code/ch11/myfile1 | awk '!/^$/ {print $0}'
 Lorem Ipsum is simply dummy text .
