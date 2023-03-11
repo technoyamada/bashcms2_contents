@@ -1486,7 +1486,7 @@ It has survived not only five centuries
 It is a long established fact that a reader will be distracted.
 ```
 ### 11.2.2　ドット文字
-改行(\n)以外の任意の文字にマッチする=
+改行(\n)以外の任意の文字にマッチする
 ### 11.2.3　文字クラス
 ### 11.2.4　一連の文字
 ### 11.2.5　特殊文字クラス
@@ -1536,6 +1536,10 @@ $ awk '$4 ~ /10\/Sep\/2014/ { count++ } END{ print count }' access.log
 16205
 ```
 ### 12.2.2　404エラーの集約
+```
+$ awk '$9 ~ /404/ { print $9, $7 }' access.log | sort -u | wc -l
+102
+```
 ### 12.2.3　HTTPアクセスコードの集約
 ### 12.2.4　リソースのヒット数
 ### 12.2.5　画像のホットリンクの識別
