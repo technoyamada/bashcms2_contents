@@ -1530,7 +1530,7 @@ ML, like Gecko) Chrome/37.0.2062.117 Mobile Safari/537.36"
 $ awk '$4 ~ /10\/Sep\/2014/ { print $1 }' access.log | wc -l
 16205
 ```
-- wcコマンドを使うことでプロセスを増やしたくない場合は、メインブロック内で独自変数を活用すれば良い。
+- プロセスを増やしたくない場合は、メインブロック内で独自変数を活用すれば良い。
 ```
 $ awk '$4 ~ /10\/Sep\/2014/ { count++ } END{ print count }' access.log
 16205
