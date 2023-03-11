@@ -1486,7 +1486,7 @@ It has survived not only five centuries
 It is a long established fact that a reader will be distracted.
 ```
 ### 11.2.2　ドット文字
-
+改行(\n)以外の任意の文字にマッチする=
 ### 11.2.3　文字クラス
 ### 11.2.4　一連の文字
 ### 11.2.5　特殊文字クラス
@@ -1503,8 +1503,38 @@ It is a long established fact that a reader will be distracted.
 
 # 12章　AWKを使ったログの集約
 ## 12.1　HTTPログファイルのフォーマット
+- どのようなファイルを扱う場合でも、最初にやることはファイルの構造を理解すること。
+  - フィールドを区切るのに何が使われているか
+  - 各フィールドが何を表しているか
 ## 12.2　Webログからのデータの表示
 ### 12.2.1　日付によるエントリーの選択
+- awkのマッチ演算しチルダ（~）を用いる。
+```
+$ awk '$4 ~ /10\/Sep\/2014/ { print $4,$5 }' access.log | head -n 3
+[10/Sep/2014:00:00:03 +0100]
+[10/Sep/2014:00:00:23 +0100]
+[10/Sep/2014:00:00:27 +0100]
+```
+- メインブロックを省略すると行全体が表示。
+```
+$ awk '$4 ~ /10\/Sep\/2014/' access.log | head -n 3
+128.252.139.84 - - [10/Sep/2014:00:00:03 +0100] "GET /wp/?cat=281 HTTP/1.1" 200 51860 "http://theurbanpenguin.com/wp/?cat=281" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.19
+85.125 Safari/537.36"
+41.150.168.184 - - [10/Sep/2014:00:00:23 +0100] "GET /scripting/java.html HTTP/1.1" 200 1088 "http://theurbanpenguin.com/scripting/scripting.html" "Mozilla/5.0 (Linux; Android 4.2.2; GT-I8200 Build/JDQ39) AppleWebKit/537.36 (KHT
+ML, like Gecko) Chrome/37.0.2062.117 Mobile Safari/537.36"
+128.252.139.84 - - [10/Sep/2014:00:00:27 +0100] "GET /wp/?s=raspberry+pi HTTP/1.1" 200 28981 "http://theurbanpenguin.com/wp/?cat=281" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/
+36.0.1985.125 Safari/537.36"
+```
+特定の日の総アクセス数を表示する。
+```
+$ awk '$4 ~ /10\/Sep\/2014/ { print $1 }' access.log | wc -l
+16205
+```
+- wcコマンドを使うことでプロセスを増やしたくない場合は、メインブロック内で独自変数を活用すれば良い。
+```
+$ awk '$4 ~ /10\/Sep\/2014/ { count++ } END{ print count }' access.log
+16205
+```
 ### 12.2.2　404エラーの集約
 ### 12.2.3　HTTPアクセスコードの集約
 ### 12.2.4　リソースのヒット数
