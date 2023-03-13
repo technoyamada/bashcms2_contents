@@ -1488,8 +1488,43 @@ It is a long established fact that a reader will be distracted.
 ### 11.2.2　ドット文字
 改行(\n)以外の任意の文字にマッチする
 ### 11.2.3　文字クラス
+マッチさせたい文字を各括弧の中に記述する。
+マッチさせたくない場合はキャレット（^）を用いる。
+```
+$ cat myfile3
+I love bash scripting.
+I hope it works without a crash.
+Or I'll smash it.
+
+
+$ sed -n '/[mbr]ash/p' myfile3 
+I love bash scripting.
+I hope it works without a crash.
+Or I'll smash it.
+
+$ sed -n '/[^br]ash/p' myfile3 
+Or I'll smash it.
+```
 ### 11.2.4　一連の文字
+```
+$ awk '/[d-hm-z]ash/{print $0}' myfile3
+I hope it works without a crash.
+Or I'll smash it.
+
+$ sed -n '/[d-hm-z]ash/p' myfile3 
+I hope it works without a crash.
+Or I'll smash it.
+```
 ### 11.2.5　特殊文字クラス
+|文字セット|マッチする対象|
+|---|---|
+|[[::lpha]]|アルファベット|
+|[[:upper:]]|A-Z|
+|[[:lower:]]|a-z|
+|[[:alnum:]]|0-9, A-Z, a-z|
+|[[:blank:]]|空白文字（スペース、タブ、CRなど）|
+|[[:digit:]]|0-9|
+|[[:punt:]]|句読文字|
 ### 11.2.6　アスタリスク
 ## 11.3　EREパターンの定義
 ### 11.3.1　疑問符
