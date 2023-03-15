@@ -1624,6 +1624,14 @@ $ awk -f status.awk sample-code/ch12/access.log | tail -n 5
 200/wp/?p=3227  has occurred  18  times.
 ```
 ### 12.2.4　リソースのヒット数
+```
+$ awk '{print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | head -n 5
+   3468 /favicon.ico
+   2330 /wp/wp-content/themes/twentytwelve/style.css?ver=3.9.1
+   2265 /wp/wp-content/themes/twentytwelve/js/navigation.js?ver=20140711
+   2199 /wp/wp-includes/js/jquery/jquery.js?ver=1.11.0
+   2187 /wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1
+```
 ### 12.2.5　画像のホットリンクの識別
 ## 12.3　最もランキングの高いIPアドレスの表示
 ## 12.4　ブラウザーデータの表示
