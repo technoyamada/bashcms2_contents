@@ -1632,6 +1632,15 @@ $ awk '{print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | 
    2199 /wp/wp-includes/js/jquery/jquery.js?ver=1.11.0
    2187 /wp/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1
 ```
+PHPファイルのみ表示したい場合
+```
+$ awk '$7~/php/ {print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | head -n 5
+     74 /wp/xmlrpc.php
+     62 /wp/?p=1529/wp-login.php
+     58 /wp/xmlrpc.php?rsd
+     21 /wp/wp-login.php
+     19 /wp/wp-login.php?registration=disabled
+```
 ### 12.2.5　画像のホットリンクの識別
 ## 12.3　最もランキングの高いIPアドレスの表示
 ## 12.4　ブラウザーデータの表示
