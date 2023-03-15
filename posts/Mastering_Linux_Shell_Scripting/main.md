@@ -1615,8 +1615,7 @@ END {
   for (r in record)
     print r, " has occurred ", record[r], " times."
 }
-```
-```
+
 $ awk -f status.awk sample-code/ch12/access.log | tail -n 5
 200/wp/wp-content/uploads/2013/12/show-addr.png  has occurred  9  times.
 200/wp/?p=3267  has occurred  10  times.
