@@ -1607,21 +1607,24 @@ $ awk '$9 ~ /404/ { print $9, $7 }' access.log | sort -u | wc -l
 ### 12.2.3　HTTPアクセスコードの集約                                             
 status.awk
 ```
-$ cat status.awk 
 { 
-  record[$9, $7]++
+  record[$9]++
 }
 END {
   for (r in record)
     print r, " has occurred ", record[r], " times."
 }
-
-$ awk -f status.awk sample-code/ch12/access.log | tail -n 5
-200/wp/wp-content/uploads/2013/12/show-addr.png  has occurred  9  times.
-200/wp/?p=3267  has occurred  10  times.
-304/wp/wp-content/uploads/2013/11/raspi-config1-300x96.png  has occurred  1  times.
-200/wp/?tag=ad  has occurred  1  times.
-200/wp/?p=3227  has occurred  18  times.
+```
+```
+$ awk -f status.awk sample-code/ch12/access.log 
+200  has occurred  23825  times.
+206  has occurred  48  times.
+301  has occurred  60  times.
+302  has occurred  21  times.
+304  has occurred  2273  times.
+403  has occurred  133  times.
+404  has occurred  4382  times.
+501  has occurred  63  times.
 ```
 ### 12.2.4　リソースのヒット数
 ```
