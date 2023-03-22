@@ -1605,6 +1605,7 @@ $ awk '$9 ~ /404/ { print $9, $7 }' access.log | sort -u | wc -l
 102
 ```
 ### 12.2.3　HTTPアクセスコードの集約                                             
+- AWK では、インデックスが数字であるものを「配列」と呼び、インデックスが文字列であるものを「連想配列」と呼ぶ。
 status.awk
 ```
 { 
@@ -1626,6 +1627,25 @@ $ awk -f status.awk sample-code/ch12/access.log
 404  has occurred  4382  times.
 501  has occurred  63  times.
 ```
+最も多くアクセスしたIPアドレスを表示する。
+```
+{
+  ip[$1]++
+}
+END {
+  for (i in ip) {
+    if (max < ip[i]) {
+      max = ip[i]
+      maxnumber = i
+    }
+  }
+  print maxnumber, "has accessed", max, "times."
+}
+```
+$ awk -f status.awk sample-code/ch12/access.log 
+68.107.81.110 has accessed 311 times.
+```
+
 ### 12.2.4　リソースのヒット数
 ```
 $ awk '{print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | head -n 5
