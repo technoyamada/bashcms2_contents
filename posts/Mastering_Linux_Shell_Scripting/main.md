@@ -1642,10 +1642,10 @@ END {
   print maxnumber, "has accessed", max, "times."
 }
 ```
+```
 $ awk -f status.awk sample-code/ch12/access.log 
 68.107.81.110 has accessed 311 times.
 ```
-
 ### 12.2.4　リソースのヒット数
 ```
 $ awk '{print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | head -n 5
