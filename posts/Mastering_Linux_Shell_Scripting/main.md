@@ -1627,25 +1627,6 @@ $ awk -f status.awk sample-code/ch12/access.log
 404  has occurred  4382  times.
 501  has occurred  63  times.
 ```
-最も多くアクセスしたIPアドレスを表示する。
-```
-{
-  ip[$1]++
-}
-END {
-  for (i in ip) {
-    if (max < ip[i]) {
-      max = ip[i]
-      maxnumber = i
-    }
-  }
-  print maxnumber, "has accessed", max, "times."
-}
-```
-```
-$ awk -f status.awk sample-code/ch12/access.log 
-68.107.81.110 has accessed 311 times.
-```
 ### 12.2.4　リソースのヒット数
 ```
 $ awk '{print $7}' sample-code/ch12/access.log | sort | uniq -c | sort -r -k1 | head -n 5
@@ -1666,6 +1647,25 @@ $ awk '$7~/php/ {print $7}' sample-code/ch12/access.log | sort | uniq -c | sort 
 ```
 ### 12.2.5　画像のホットリンクの識別
 ## 12.3　最もランキングの高いIPアドレスの表示
+最も多くアクセスしたIPアドレスを表示する。
+```
+{
+  ip[$1]++
+}
+END {
+  for (i in ip) {
+    if (max < ip[i]) {
+      max = ip[i]
+      maxnumber = i
+    }
+  }
+  print maxnumber, "has accessed", max, "times."
+}
+```
+```
+$ awk -f status.awk sample-code/ch12/access.log 
+68.107.81.110 has accessed 311 times.
+```
 ## 12.4　ブラウザーデータの表示
 ## 12.5　Eメールログの処理
 ## 12.6　まとめ
