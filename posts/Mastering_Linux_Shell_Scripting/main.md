@@ -1667,8 +1667,24 @@ $ awk -f status.awk sample-code/ch12/access.log
 68.107.81.110 has accessed 311 times.
 ```
 ## 12.4　ブラウザーデータの表示
+上位5件を表示する。
+```
+$ awk -F"\"" '{ print $(NF-1) }' sample-code/ch12/access.log | awk '{ gsub(/\(.*\)/, "", $0); gsub(/\s+/, "\n", $0); gsub(/^[ ]*/, "", $0); print }' | sed '/^$/d'| sort | uniq -c | sort -r | head -n5
+```
 ## 12.5　Eメールログの処理
+受信メッセージのみ表示する。Postfixのメールログでは、$7がfromの場合は送信メッセージを表し、toの場合は受診メッセージを表す模様。
+```
+$ awk '($7 ~ /^to/)' sample-code/ch12/mail.log 
+```
 ## 12.6　まとめ
+### 12-4
+```
+$ awk -F"\"" '{ print $2 }' sample-code/ch12/access.log | grep -E '^GET' | awk -F" " '($2 ~ /\.php$/){ print $2 }' | sort | uniq -c | sort -k1 -n -r
+     60 /wp/xmlrpc.php
+     21 /wp/wp-login.php
+      6 /wp-login.php
+（省略）
+```
 ## 12.7　練習問題
 
 # 13章　AWKを使ったlastlogの改良
