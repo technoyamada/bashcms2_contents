@@ -1677,6 +1677,7 @@ $ awk -F"\"" '{ print $(NF-1) }' sample-code/ch12/access.log | awk '{ gsub(/\(.*
 $ awk '($7 ~ /^to/)' sample-code/ch12/mail.log 
 ```
 ## 12.6　まとめ
+## 12.7　練習問題
 ### 12-4
 ```
 $ awk -F"\"" '{ print $2 }' sample-code/ch12/access.log | grep -E '^GET' | awk -F" " '($2 ~ /\.php$/){ print $2 }' | sort | uniq -c | sort -k1 -n -r
@@ -1685,7 +1686,6 @@ $ awk -F"\"" '{ print $2 }' sample-code/ch12/access.log | grep -E '^GET' | awk -
       6 /wp-login.php
 （省略）
 ```
-## 12.7　練習問題
 
 # 13章　AWKを使ったlastlogの改良
 ## 13.1　AWKの範囲を使ってデータを除外する
