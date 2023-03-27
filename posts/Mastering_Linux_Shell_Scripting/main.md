@@ -1847,7 +1847,23 @@ name: drill/price: 99/stock: 5
 ## 14.1　Pythonとは何か？
 ## 14.2　PythonでのHello World
 ## 14.3　Pythonでの引数
+- argv配列は、sysオブジェクトの一部
+- sys.argv[0]は、スクリプト名
+- sys.argv[1]は、スクリプトに渡された最初の引数
+- sys.argv[2]は、スクリプトに渡された2番目の引数
+- sys.argv[N]は、スクリプトに渡されたN番目の引数
 ## 14.4　引数の引き渡し
+args.py
+```
+import sys
+print("Hello " + sys.argv[1])
+print("length: " + str(len(sys.argv)))
+```
+```
+$ python3 args.py Aki
+Hello Aki
+length: 2
+```
 ## 14.5　引数のカウント
 ## 14.6　重要な空白
 ## 14.7　ユーザー入力の読み取り
