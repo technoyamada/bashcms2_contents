@@ -1857,6 +1857,16 @@ args.py
 ```
 import sys
 print("Hello " + sys.argv[1])
+```
+```
+$ python3 args.py Aki
+Hello Aki
+```
+## 14.5　引数のカウント
+args.py
+```
+import sys
+print("Hello " + sys.argv[1])
 print("length: " + str(len(sys.argv)))
 ```
 ```
@@ -1864,9 +1874,32 @@ $ python3 args.py Aki
 Hello Aki
 length: 2
 ```
-## 14.5　引数のカウント
 ## 14.6　重要な空白
 ## 14.7　ユーザー入力の読み取り
+args.py
+```
+import sys
+count = len(sys.argv)
+name = ""
+
+if ( count == 1 ):
+  name = input("Enter your name: ")
+else:
+  name = sys.argv[1]
+
+print("Hello " + name)
+print("Exiting " + sys.argv[0])
+```
+```
+$ python3 args.py Aki
+Hello Aki
+Exiting args.py
+
+$ python3 args.py 
+Enter your name: Yamada
+Hello Yamada
+Exiting args.py
+```
 ## 14.8　Pythonを使ってファイルに書き出す
 ## 14.9　文字列の操作
 ## 14.10　まとめ
