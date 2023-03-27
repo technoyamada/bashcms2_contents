@@ -1763,6 +1763,43 @@ Total number of users processed: 1
 ```
 ## 13.3　AWKのレコードセパレーターを操作してXMLデータを処理する
 ### 13.3.1　Apacheバーチャルホスト
+```
+$ cat sample-code/ch13/virtualhost.conf 
+<VirtualHost *:80>
+DocumentRoot /www/example
+ServerName www.example.org
+# Other directives here
+</VirtualHost>
+
+<VirtualHost *:80>
+DocumentRoot /www/theurbanpenguin
+ServerName www.theurbanpenguin.com
+# Other directives here
+</VirtualHost>
+
+<VirtualHost *:80>
+DocumentRoot /www/packt
+ServerName www.packtpub.com
+# Other directives here
+</VirtualHost>
+```
+vh.awk
+```
+BEGIN {
+  RS="\n\n"
+}
+$0 ~ search { 
+  print 
+}
+```
+```
+$ awk -f vh.awk search=packt sample-code/ch13/virtualhost.conf 
+<VirtualHost *:80>
+DocumentRoot /www/packt
+ServerName www.packtpub.com
+# Other directives here
+</VirtualHost>
+```
 ### 13.3.2　XMLカタログ
 ## 13.4　まとめ
 ## 13.5　練習問題
