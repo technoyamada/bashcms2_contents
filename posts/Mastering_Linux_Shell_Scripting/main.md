@@ -1801,6 +1801,45 @@ ServerName www.packtpub.com
 </VirtualHost>
 ```
 ### 13.3.2　XMLカタログ
+```
+$ cat sample-code/ch13/catalog.xml 
+<products>
+
+<product>
+<name>drill</name>
+<price>99</price>
+<stock>5</stock>
+</product>
+
+<product>
+<name>hammer</name>
+<price>10</price>
+<stock>50</stock>
+</product>
+
+<product>
+<name>screwdriver</name>
+<price>5</price>
+<stock>51</stock>
+</product>
+
+<product>
+<name>table saw</name>
+<price>1099.99</price>
+<stock>5</stock>
+</product>
+
+</products>
+```
+catalog.awk
+```
+BEGIN { FS="[><]"; RS="\n\n"; OFS="/"; }
+$0 ~ search { print $4 ": " $5, $8 ": " $9, $12 ": " $13 }
+```
+```
+$ awk -f catalog.awk search=drill sample-code/ch13/catalog.xml 
+name: drill/price: 99/stock: 5
+```
 ## 13.4　まとめ
 ## 13.5　練習問題
 
