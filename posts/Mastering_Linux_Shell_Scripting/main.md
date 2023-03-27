@@ -1704,8 +1704,14 @@ Username         Port     From             Latest
 takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
 ```
 ### 13.1.2　AWKによる行のフィルタリング
+lastlog.awk
 ```
-$ lastlog | awk '!(/^Username/ || /^root/ || /**Never logged in**/){ print }'
+!(/^Username/ || /^root/ || /**Never logged in**/){
+  print $0;
+}
+```
+```
+$ lastlog | awk -f lastlog.awk 
 takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
 ```
 ### 13.1.3　マッチした行のカウント
