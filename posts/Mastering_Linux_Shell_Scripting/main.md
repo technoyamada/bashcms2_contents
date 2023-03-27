@@ -1698,7 +1698,9 @@ daemon                                     **Never logged in**
 （省略）
 sshd                                       **Never logged in**
 takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
-
+```
+-uオプションを用いて、UIDの範囲を指定できる。
+```
 $ lastlog -u 1000-5000
 Username         Port     From             Latest
 takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
@@ -1715,6 +1717,23 @@ $ lastlog | awk -f lastlog.awk
 takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
 ```
 ### 13.1.3　マッチした行のカウント
+lastlog.awk
+```
+!(/^Username/ || /^root/ || /**Never logged in**/){
+  cnt++
+  print $0;
+}
+END {
+  print "=========="
+  print "Total number of users processed:", cnt
+}
+```
+```
+$ lastlog | awk -f lastlog.awk 
+takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
+==========
+Total number of users processed: 1
+```
 ## 13.2　フィールド数に基づく条件
 ## 13.3　AWKのレコードセパレーターを操作してXMLデータを処理する
 ### 13.3.1　Apacheバーチャルホスト
