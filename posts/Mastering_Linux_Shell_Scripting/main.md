@@ -1690,7 +1690,24 @@ $ awk -F"\"" '{ print $2 }' sample-code/ch12/access.log | grep -E '^GET' | awk -
 # 13章　AWKを使ったlastlogの改良
 ## 13.1　AWKの範囲を使ってデータを除外する
 ### 13.1.1　lastlogコマンド
+```
+$ lastlog
+Username         Port     From             Latest
+root                                       **Never logged in**
+daemon                                     **Never logged in**
+（省略）
+sshd                                       **Never logged in**
+takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
+
+$ lastlog -u 1000-5000
+Username         Port     From             Latest
+takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
+```
 ### 13.1.2　AWKによる行のフィルタリング
+```
+$ lastlog | awk '!(/^Username/ || /^root/ || /**Never logged in**/){ print }'
+takaaki          pts/0    60.118.123.16    月  3月 27 18:26:50 +0900 2023
+```
 ### 13.1.3　マッチした行のカウント
 ## 13.2　フィールド数に基づく条件
 ## 13.3　AWKのレコードセパレーターを操作してXMLデータを処理する
