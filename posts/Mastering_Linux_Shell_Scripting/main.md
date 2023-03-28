@@ -1919,6 +1919,22 @@ log.write("Hello " + name + "\n")
 log.close()
 ```
 ## 14.9　文字列の操作
+string.py
+```
+#!/usr/bin/python3
+str = "Welcome to Python scripting world"
+print(str[:2])
+print(str[2:])
+print(str[3:5])
+print(str[-1])
+```
+```
+$ python3 string.py 
+We
+lcome to Python scripting world
+co
+d
+```
 ## 14.10　まとめ
 ## 14.11　練習問題
 
