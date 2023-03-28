@@ -1901,6 +1901,23 @@ Hello Yamada
 Exiting args.py
 ```
 ## 14.8　Pythonを使ってファイルに書き出す
+Python2とPython3で、inputの挙動が異なるため。シェルから実行する際は、python3コマンドを使うこと。
+file.py
+```
+#!/usr/bin/python3
+import sys
+count = len(sys.argv)
+name = ''
+
+if ( count == 1 ):
+  name = input("Enter your name: ")
+else:
+  name = sys.argv[1]
+
+log = open("script.log", "a")
+log.write("Hello " + name + "\n")
+log.close()
+```
 ## 14.9　文字列の操作
 ## 14.10　まとめ
 ## 14.11　練習問題
