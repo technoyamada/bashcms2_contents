@@ -1935,6 +1935,23 @@ lcome to Python scripting world
 co
 d
 ```
+置換や大文字小文字の変換
+```
+#!/usr/bin/python3
+str = "Welcome to Python scripting world"
+str2 = str.replace("Python", "Shell")
+print(str2)
+str3 = str.upper()
+print(str3)
+str4 = str3.lower()
+print(str4)
+```
+```
+$ python3 string.py 
+Welcome to Shell scripting world
+WELCOME TO PYTHON SCRIPTING WORLD
+welcome to python scripting world
+```
 ## 14.10　まとめ
 ## 14.11　練習問題
 
