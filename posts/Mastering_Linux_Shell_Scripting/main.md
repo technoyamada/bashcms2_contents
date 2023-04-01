@@ -1956,6 +1956,7 @@ welcome to python scripting world
 ## 14.11　練習問題
 
 # 付録A　bashのその他の機能
+テスト入力ですよ。
 ## A.1　組み込みコマンド
 ### A.1.1　builtinコマンドとcommandコマンド
 ### A.1.2　declareコマンド
