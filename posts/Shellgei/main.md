@@ -183,7 +183,7 @@ $ cat <<< $city
 $ a=私は; b=俳優よ
 a+=$b
 ```
-変数展開(parameter expansion)
+##### 変数展開(parameter expansion)
 
 ${変数名:開始文字位置:長さ}
 ```
