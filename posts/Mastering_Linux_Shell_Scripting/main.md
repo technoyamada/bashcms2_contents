@@ -1953,7 +1953,6 @@ WELCOME TO PYTHON SCRIPTING WORLD
 welcome to python scripting world
 ```
 ## 14.10　まとめ
-xxx
 ## 14.11　練習問題
 
 # 付録A　bashのその他の機能
