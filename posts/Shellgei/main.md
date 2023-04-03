@@ -232,6 +232,46 @@ $ re=""; grep $re /etc/passwd
 (「grep /etc/passwd」と入力したのと同じになってしまい、入力待ち状態になる)
 ```
 ##### 練習2.1.f　Bashの配列と連想配列
+Bashの配列を初期化するには、配列名=( ) の括弧内に文字列を並べる。
+```
+$ a=( "$SHELL" "$LANG" "$USER")
+$ echo "${a[0]}" "${a[1]}" "${a[2]}" 
+/bin/bash ja_JP.UTF-8 takaaki
+# 要素をすべて出力する
+$ echo ${a[@]}
+/bin/bash ja_JP.UTF-8 takaaki
+$ echo ${a[*]}
+/bin/bash ja_JP.UTF-8 takaaki
+# インデックスを表示する
+$ echo ${!a[@]}
+0 1 2
+# 要素の個数を表示する
+$ echo ${#a[@]}
+3
+$ echo ${#a[*]}
+3
+```
+連想配列は、declare -A で作り、名前[キー]=値 で設定する。
+```
+$ b["SHELL"]="$SHELL"; b["LANG"]="$LANG"; b["USER"]="$USER"
+$ echo "${b[SHELL]}" "${b[LANG]}" "${b[USER]}"
+/bin/bash ja_JP.UTF-8 takaaki
+# 値をすべて出力する
+$ echo "${b[@]}"
+/bin/bash takaaki ja_JP.UTF-8
+$ echo "${b[*]}"
+/bin/bash takaaki ja_JP.UTF-8
+# キーをすべて出力する
+$ echo "${!b[@]}"
+SHELL USER LANG
+$ echo "${!b[*]}"
+SHELL USER LANG
+# 個数を出力する
+$ echo "${#b[@]}"
+3
+$ echo "${#b[*]}"
+3
+```
 ##### 練習2.1.g　繰り返しと終了ステータス
 ##### 練習2.1.h　条件分岐
 ##### 問題12　変数の読み込み
