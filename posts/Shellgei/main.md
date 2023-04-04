@@ -273,6 +273,66 @@ $ echo "${#b[*]}"
 3
 ```
 ##### 練習2.1.g　繰り返しと終了ステータス
+```
+$ seq 3 | while read x; do printf "%s " ${x}; done
+1 2 3 
+$ set aa bb cc
+$ echo ${2}
+bb
+
+$ for x in "$1" "$2" "$3"; do echo ${x}; done
+aa
+bb
+cc
+$ for x in $@; do echo "${x}"; done
+aa
+bb
+cc
+$ for x in "$@"; do echo "${x}"; done
+aa
+bb
+cc
+$ for x in $*; do echo "${x}"; done
+aa
+bb
+cc
+# $* をクォートで囲むと連結された１つの引数「aa bb cc」としてコマンドに渡される。
+$ for x in "$*"; do echo "${x}"; done
+aa bb cc
+
+# while 右側のコマンドが正常に処理される間実行される。
+# read は標準入力から1行ずつ文字列を読み込み、変数にセットする。
+$ seq 3 | while read x; do printf "%s " ${x}; done
+1 2 3 
+```
+- コマンドは、自分自身がどのように終了したかを終了ステータスによってシェルに伝える。
+- シェルは、次のコマンドが実行されるまで、終了ステータスを記憶している。
+- 終了ステータスは、$? に保存される。
+```
+$ grep 'bash' /etc/passwd; echo $?
+root:x:0:0:root:/root:/bin/bash
+takaaki:x:1000:1000:Takaaki Yamada,,,:/home/takaaki:/bin/bash
+0
+
+$ grep 'basha' /etc/passwd; echo $?
+1
+
+$ grep 'basha' /etc/passwdxxx; echo $?
+grep: /etc/passwdxxx: そのようなファイルやディレクトリはありません
+2
+
+$ grepxxx 'basha' /etc/passwdxxx; echo $?
+grepxxx: コマンドが見つかりません
+127
+```
+- $? で確認できるのは最後のコマンドの終了ステータスのみ。
+- これでは不都合が多いので、Bash は配列 PIPESTATUS にパイプライン全ての終了ステータスを記録する。
+```
+$ cat /etc/passwd | grep 'hoge'
+
+$ echo ${PIPESTATUS[@]}
+0 1
+```
 ##### 練習2.1.h　条件分岐
 ##### 問題12　変数の読み込み
 ##### 問題13　存在しないファイルの初期化
