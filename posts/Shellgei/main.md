@@ -274,8 +274,6 @@ $ echo "${#b[*]}"
 ```
 ##### 練習2.1.g　繰り返しと終了ステータス
 ```
-$ seq 3 | while read x; do printf "%s " ${x}; done
-1 2 3 
 $ set aa bb cc
 $ echo ${2}
 bb
