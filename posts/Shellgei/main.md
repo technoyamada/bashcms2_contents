@@ -2,7 +2,7 @@
 Keywords: 
 Copyright: (C) Takaaki Yamada
 ---
-xxx
+
 # 1日1問、半年以内に習得 シェル・ワンライナー160本ノック
 ## 第1部　シェルとコマンドに親しむ
 ### 第1章　Linux環境
