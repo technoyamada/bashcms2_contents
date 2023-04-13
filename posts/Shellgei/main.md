@@ -375,6 +375,29 @@ $ [ -e unfile ] || touch unfile
 $ cat <> unfile
 ```
 ##### 問題14　さまざまなループ
+```
+$ n=1; while [ $n -le 10 ]; do echo $n; n=$((n + 1)); done
+```
+標準入力を読み込む while read を使う
+```
+$ seq 10 | while read n; do echo $n; done
+```
+コマンド置換を用いる
+```
+$ for n in $(seq 10); do echo $n; done 
+```
+ブレース展開の一種であるBashのシーケンス式を用いる
+```
+$ for n in {1..10}; do echo $n; done
+```
+ループを使わない方法
+```
+$ seq 10 0 | xargs -I@ echo "ロケット発射まで @" 
+```
+前半でシェルスクリプトを作り、後半でそれを Bash に渡して実行している
+```
+$ seq -f 'echo ロケット発射まで %g' 10 0 | bash
+```
 ##### 問題15　文字種の変換
 #### 2.2　プロセスを意識してシェルを操作する
 ##### 練習2.2.a　プロセスを知る
