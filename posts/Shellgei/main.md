@@ -399,6 +399,41 @@ $ seq 10 0 | xargs -I@ echo "ロケット発射まで @"
 $ seq -f 'echo ロケット発射まで %g' 10 0 | bash
 ```
 ##### 問題15　文字種の変換
+パイプから文字列を変数に取り込む方法
+```
+$ echo I am a perfect human | while read c; do echo "$c¥n"; done
+```
+bash の -c オプションで 別の bash を立ちげてコマンドを実行する方法
+```
+$ echo I am a perfect human | bash -c 'read str; echo "input string is:" $str'
+```
+サブシェルを使う方法
+- bash -c と同様に別の bash を立ち上げて中のコマンドを実行する
+```
+$ echo I am a perfect human | (read str; echo "input string is:" $str)
+```
+変数展開の機能を使う（Bashバージョン4以降）
+```
+# 大文字に変換
+$ echo I am a perfect human | (read str; echo ${str^^})
+# 小文字に変換
+$ echo I am a perfect human | (read str; echo ${str,,})
+```
+配列の各要素の先頭を大文字にする（read -a w で 配列w に代入している）
+```
+# シンプルな例 w[*] 配列の区切りはIFSのまま
+$ echo pen-pineapple-apple-pen | (IFS=-; read -a w; echo "${w[*]^}")
+Pen-Pineapple-Apple-Pen
+# シンプルな例 w[@] 配列の区切りが空白になる
+$ echo pen-pineapple-apple-pen | (IFS=-; read words; echo ${words[@]^})
+Pen pineapple apple pen
+# forループで改行しながら表示する
+$ echo pen-pineapple-apple-pen | (IFS=-; read -a words; for w in ${words[*]^}; do echo $w; done)
+Pen
+Pineapple
+Apple
+Pen
+```
 #### 2.2　プロセスを意識してシェルを操作する
 ##### 練習2.2.a　プロセスを知る
 ##### 練習2.2.b　プロセスの親子関係を知る
