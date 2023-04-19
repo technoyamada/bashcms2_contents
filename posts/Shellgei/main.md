@@ -366,8 +366,74 @@ n=${1:-$(cat)}
 echo $((n * 2))
 ```
 ##### 問題13　存在しないファイルの初期化
+存在しなければ作成する。
+```
+$ [ -e unfile ] || touch unfile
+```
+リダイレクト記号 <> を用いる。「読み書きモードでファイルを開く」の意味を持つ。ここでは、unfileが存在すれば読み込み、存在しなければcatからの書き出しに備えてファイルを作成する。
+```
+$ cat <> unfile
+```
 ##### 問題14　さまざまなループ
+```
+$ n=1; while [ $n -le 10 ]; do echo $n; n=$((n + 1)); done
+```
+標準入力を読み込む while read を使う
+```
+$ seq 10 | while read n; do echo $n; done
+```
+コマンド置換を用いる
+```
+$ for n in $(seq 10); do echo $n; done 
+```
+ブレース展開の一種であるBashのシーケンス式を用いる
+```
+$ for n in {1..10}; do echo $n; done
+```
+ループを使わない方法
+```
+$ seq 10 0 | xargs -I@ echo "ロケット発射まで @" 
+```
+前半でシェルスクリプトを作り、後半でそれを Bash に渡して実行している
+```
+$ seq -f 'echo ロケット発射まで %g' 10 0 | bash
+```
 ##### 問題15　文字種の変換
+パイプから文字列を変数に取り込む方法
+```
+$ echo I am a perfect human | while read c; do echo "$c¥n"; done
+```
+bash の -c オプションで 別の bash を立ちげてコマンドを実行する方法
+```
+$ echo I am a perfect human | bash -c 'read str; echo "input string is:" $str'
+```
+サブシェルを使う方法
+- bash -c と同様に別の bash を立ち上げて中のコマンドを実行する
+```
+$ echo I am a perfect human | (read str; echo "input string is:" $str)
+```
+変数展開の機能を使う（Bashバージョン4以降）
+```
+# 大文字に変換
+$ echo I am a perfect human | (read str; echo ${str^^})
+# 小文字に変換
+$ echo I am a perfect human | (read str; echo ${str,,})
+```
+配列の各要素の先頭を大文字にする（read -a w で 配列w に代入している）
+```
+# シンプルな例 w[*] 配列の区切りはIFSのまま
+$ echo pen-pineapple-apple-pen | (IFS=-; read -a w; echo "${w[*]^}")
+Pen-Pineapple-Apple-Pen
+# シンプルな例 w[@] 配列の区切りが空白になる
+$ echo pen-pineapple-apple-pen | (IFS=-; read words; echo ${words[@]^})
+Pen pineapple apple pen
+# forループで改行しながら表示する
+$ echo pen-pineapple-apple-pen | (IFS=-; read -a words; for w in ${words[*]^}; do echo $w; done)
+Pen
+Pineapple
+Apple
+Pen
+```
 #### 2.2　プロセスを意識してシェルを操作する
 ##### 練習2.2.a　プロセスを知る
 異なるプロセスがいくつあるか表示させる
