@@ -449,7 +449,24 @@ $ ps | awk '$4=="sleep"{a[$1]=""; b++}END{print length(a), b}'
 5 5
 ```
 ##### 練習2.2.b　プロセスの親子関係を知る
+```
+sleep 100 | sleep 100 | sleep 100 | sleep 100 | sleep 100 &
+$ pstree | grep -m 1 sleep -B1 -A4
+ | |   \-+= 01629 takaaki.yamada /bin/zsh -il
+ | |     |--= 02998 takaaki.yamada sleep 100
+ | |     |--- 02999 takaaki.yamada sleep 100
+ | |     |--- 03000 takaaki.yamada sleep 100
+ | |     |--- 03001 takaaki.yamada sleep 100
+ | |     |--- 03002 takaaki.yamada sleep 100
+ ```
 ##### 練習2.2.c　ビルトインコマンドと外部コマンドを意識する
+外部コマンド
+```
+$ ls /bin 
+[         chmod     dash      df        expr      ksh       ln        mv        pwd       rmdir     stty      test      zsh
+bash      cp        date      echo      hostname  launchctl ls        pax       realpath  sh        sync      unlink
+cat       csh       dd        ed        kill      link      mkdir     ps        rm        sleep     tcsh      wait4path
+```
 ##### 練習2.2.d　サブシェルを使う
 ##### 練習2.2.e　コマンド置換とプロセス置換を使う
 ##### 問題16　変数のローカル化
