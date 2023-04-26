@@ -483,8 +483,50 @@ $ ls /bin
 bash      cp        date      echo      hostname  launchctl ls        pax       realpath  sh        sync      unlink
 cat       csh       dd        ed        kill      link      mkdir     ps        rm        sleep     tcsh      wait4path
 ```
+ビルトインコマンドの方が高速
+- 外部コマンドは、実行される度に新しいプロセスとして呼び出される。OSが必要なメモリ領域を確保したり、プロセスの一覧表（プロセステーブル）を書き換えたりしなければならない。
+- ビルトインコマンドは、Bashのプログラム中（C言語）に実装されているため、あるプログラムが自分の関数を呼び出すときのコストしかかからない。
+```
+$ time for i in {1..1000}; do /bin/echo "$i" >/dev/null; done
+real    0m1.534s
+user    0m0.294s
+sys     0m0.964s
+
+$time for i in {1..1000}; do builtin echo "$i" >/dev/null; done
+real    0m0.033s
+user    0m0.012s
+sys     0m0.020s
+```
 ##### 練習2.2.d　サブシェルを使う
+- サブシェルは、端末で動いているBashとは別のプロセスで動作する。
+```
+$ pwd
+/Users/takaaki.yamada/Development/books/shellgei/work/qdata
+
+$ (cd /etc; ls *.conf)
+asl.conf                newsyslog.conf          ntp_opendirectory.conf  syslog.conf
+autofs.conf             nfs.conf                pf.conf
+kern_loader.conf        notify.conf             resolv.conf
+man.conf                ntp.conf                rtadvd.conf
+
+$ pwd
+/Users/takaaki.yamada/Development/books/shellgei/work/qdata
+```
 ##### 練習2.2.e　コマンド置換とプロセス置換を使う
+コマンド置換 $( )
+```
+$ a='きたうらわ'  
+$ echo ${a}を逆さにすると$(echo ${a} | rev)
+きたうらわを逆さにするとわらうたき
+```
+プロセス置換 <( )
+```
+$ a='きたうらわ'  
+$ cat <(echo $a) <(echo を逆さにすると) <(echo $a | rev)
+きたうらわ
+を逆さにすると
+わらうたき
+```
 ##### 問題16　変数のローカル化
 ##### 問題17　コマンドが使えないときのコピー
 ##### 問題18　シェルのビルトインだけでの集計
