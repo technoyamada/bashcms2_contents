@@ -460,6 +460,22 @@ $ pstree | grep -m 1 sleep -B1 -A4
  | |     |--- 03002 takaaki.yamada sleep 100
  ```
 ##### 練習2.2.c　ビルトインコマンドと外部コマンドを意識する
+ビルトインコマンド（組み込みコマンド）
+```
+$ compgen -b | column
+unset           pushln          zstat           compctl         comparguments   bindkey         limit           unfunction      set
+rehash          zle             which           r               pushd           typeset         echotc          fc              continue
+popd            readonly        unhash          zmodload        functions       true            echo            vared           command
+ulimit          exit            pwd             zregexparse     float           hash            wait            unalias         zcompile
+local           false           zparseopts      history         zstyle          strftime        dirs            kill            whence
+jobs            times           logout          return          print           compset         unsetopt        compcall        umask
+disable         sched           disown          exec            declare         cd              read            where           trap
+[               setopt          type            compadd         comptry         compvalues      :               fg              private
+compfiles       getln           source          emulate         alias           getopts         integer         zformat         log
+printf          builtin         eval            chdir           shift           compgroups      bye             suspend
+autoload        let             comptags        ttyctl          -               export          echoti          unlimit
+noglob          bg              compdescribe    test            .               enable          compquote       break
+```
 外部コマンド
 ```
 $ ls /bin 
