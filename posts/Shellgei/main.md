@@ -544,6 +544,13 @@ XYZ
 **fork-execの補足が理解できていない。いつか戻ってくること**
 ##### 問題17　コマンドが使えないときのコピー
 ##### 問題18　シェルのビルトインだけでの集計
+```
+$ declare -A x ; IFS=: ; while read {a..g} ; do [[ -n "$g" ]] && x[$g]+=. ; done < /etc/passwd ; for s in ${!x[@]} ; do echo $s ${#x[$s]} ; done ; unset x
+/bin/bash 1
+/usr/sbin/uucico 1
+/bin/sh 1
+/usr/bin/false 114
+```
 ##### 問題19　シェルの機能を利用したファイルの上書き
 #### 2.3　ブレース展開とファイルグロブを使いこなす
 ##### 練習2.3.a　ブレース展開
