@@ -554,7 +554,23 @@ $ declare -A x ; IFS=: ; while read {a..g} ; do [[ -n "$g" ]] && x[$g]+=. ; done
 ##### 問題19　シェルの機能を利用したファイルの上書き
 #### 2.3　ブレース展開とファイルグロブを使いこなす
 ##### 練習2.3.a　ブレース展開
+```
+# 例１
+echo {1..5}{.txt,.bash}
+1.txt 1.bash 2.txt 2.bash 3.txt 3.bash 4.txt 4.bash 5.txt 5.bash
+# 例２
+echo {1..5}.{txt,bash}
+1.txt 1.bash 2.txt 2.bash 3.txt 3.bash 4.txt 4.bash 5.txt 5.bash
+```
+2から10までの数字を2つの間隔で出力する
+```
+$ echo {2..10..2}{.txt,.bash}
+2.txt 2.bash 4.txt 4.bash 6.txt 6.bash 8.txt 8.bash 10.txt 10.bash
+```
 ##### 練習2.3.b　ワイルドカードとファイルグロブ
+アスタリスクの意味
+|正規表現|直前の表現が0字以上|
+|ワイルドカード|長さ0字以上の任意の文字列|
 ##### 問題20　lsの出力をシェルの機能で
 ##### 問題21　条件がややこしいファイルの一覧の作成
 ##### 問題22　ダミーのFQDNの生成
