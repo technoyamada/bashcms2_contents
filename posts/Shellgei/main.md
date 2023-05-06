@@ -582,7 +582,57 @@ $ echo {2..10..2}{.txt,.bash}
 |?|任意の1文字|
 |\*|任意の文字列|
 |[set]|setの中のいずれかの文字|
+
+「\*.png」のような文字列をグロブと呼ぶ。
+
+```
+$ ls ?.txt
+1.txt   2.txt   3.txt   4.txt   6.txt   7.txt   8.txt   9.txt
+$ ls [126][5].*
+15.bash 15.txt  25.txt  65.bash 65.txt
+$ ls [^29].*
+1.bash  1.txt   3.bash  3.txt   4.bash  4.txt   5.bash  6.bash  6.txt   7.bash  7.txt   8.bash  8.txt
+```
 ##### 問題20　lsの出力をシェルの機能で
+```
+$ for i in $(cd /usr; echo *); do echo ${i}; done
+X11
+X11R6
+bin
+lib
+libexec
+local
+sbin
+share
+standalone
+```
+別解：${変数名##除去したい文字列}
+```
+$ for f in /usr/* ; do echo ${f##*/} ; done
+X11
+X11R6
+bin
+lib
+libexec
+local
+sbin
+share
+standalone
+```
+別解：${変数名/置換対象文字列/置換後の文字列}
+```
+$ files=(/usr/*) ; echo -e ${files[@]/\/usr\//\\n}
+
+X11 
+X11R6 
+bin 
+lib 
+libexec 
+local 
+sbin 
+share 
+standalone
+```
 ##### 問題21　条件がややこしいファイルの一覧の作成
 ##### 問題22　ダミーのFQDNの生成
 #### 2.4　シグナルを理解してあやつる
