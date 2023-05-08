@@ -634,6 +634,52 @@ share
 standalone
 ```
 ##### 問題21　条件がややこしいファイルの一覧の作成
+```
+$ tree
+.
+├── dir_a
+│   ├── file_1
+│   └── file_2
+├── dir_b
+│   ├── dir_a
+│   │   └── file_1
+│   ├── dir_c
+│   │   ├── file_1
+│   │   └── file_2
+│   ├── file_1
+│   └── file_2
+└── dir_c
+    └── dir_b
+        ├── dir_a
+        │   └── file_1
+        ├── file_1
+        └── file_2
+
+7 directories, 10 files
+$ find . -type f | grep -v '\./dir_b/d' | sort  
+./dir_a/file_1
+./dir_a/file_2
+./dir_b/file_1
+./dir_b/file_2
+./dir_c/dir_b/dir_a/file_1
+./dir_c/dir_b/file_1
+./dir_c/dir_b/file_2
+```
+別解。shopt は Bash の拡張機能をセットするコマンド。
+```
+$ shopt -s globstar
+$ shopt -p globstar
+shopt -s globstar
+
+$ echo dir_a/* dir_b/* dir_c/** | grep -o "[^ ]*[0-9]"
+dir_a/file_1
+dir_a/file_2
+dir_b/file_1
+dir_b/file_2
+dir_c/dir_b/dir_a/file_1
+dir_c/dir_b/file_1
+dir_c/dir_b/file_2
+```
 ##### 問題22　ダミーのFQDNの生成
 #### 2.4　シグナルを理解してあやつる
 ##### 練習2.4.a　シグナルの操作
