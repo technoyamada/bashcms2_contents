@@ -681,6 +681,36 @@ dir_c/dir_b/file_1
 dir_c/dir_b/file_2
 ```
 ##### 問題22　ダミーのFQDNの生成
+```
+$ echo {mail,blog,eng,www,help,sub,ns,}.{robotics,ojisan,yamada,ueda,nakamura,tashiro,blacknon}.{co.jp,com,tech,org,jp,go.jp,tw,asia} | tr ' ' '\n' | sed -E 's/^\.//g' | sort -R | head -n10 | c
+at -n
+     1  blog.tashiro.org
+     2  eng.yamada.go.jp
+     3  www.ueda.asia
+     4  help.tashiro.jp
+     5  ns.blacknon.go.jp
+     6  sub.blacknon.org
+     7  sub.yamada.org
+     8  help.ueda.go.jp
+     9  help.tashiro.com
+    10  blog.ueda.tech
+```
+/usr/share/dict/words を使った別解。
+```
+$ seq -f 'echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # %g' 5 
+echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # 1
+echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # 2
+echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # 3
+echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # 4
+echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # 5
+
+$ seq -f 'echo $(grep -E "^[a-z]+$" /usr/share/dict/words | shuf -n1).$(shuf -n1 -e {com,org,{co.,}jp,net}) # %g' 5 | bash
+disanswerable.co.jp
+leiodermatous.net
+bibliogony.jp
+gasking.org
+pantotherian.jp
+```
 #### 2.4　シグナルを理解してあやつる
 ##### 練習2.4.a　シグナルの操作
 ##### 練習2.4.b　シグナルの種類
