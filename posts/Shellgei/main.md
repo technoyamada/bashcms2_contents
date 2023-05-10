@@ -681,6 +681,10 @@ dir_c/dir_b/file_1
 dir_c/dir_b/file_2
 ```
 ##### 問題22　ダミーのFQDNの生成
+shuf コマンドをインストール
+```
+$ brew install shuf
+```
 ```
 $ echo {mail,blog,eng,www,help,sub,ns,}.{robotics,ojisan,yamada,ueda,nakamura,tashiro,blacknon}.{co.jp,com,tech,org,jp,go.jp,tw,asia} | tr ' ' '\n' | sed -E 's/^\.//g' | sort -R | head -n10 | c
 at -n
