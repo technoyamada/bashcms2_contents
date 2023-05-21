@@ -718,6 +718,7 @@ pantotherian.jp
 #### 2.4　シグナルを理解してあやつる
 - シグナルは、プロセス間通信のための１つの仕組み。
 - kill は、シグナルを送信するためのコマンド。どの端末からでも特定のプロセスに向けてシグナルを送ることができる。
+##### 練習2.4.a　シグナルの操作
 ```
 # PIDを指定する方法
 $ sleep 1000 &
@@ -731,8 +732,19 @@ $ sleep 1000 &
 $ kill %1
 [1]  + 3427 terminated  sleep 1000 
 ```
-##### 練習2.4.a　シグナルの操作
 ##### 練習2.4.b　シグナルの種類
+- Ctrl + C は、SIGINT
+- SIGKILL は、どんなプロセスも消せる。プログラム側に trap コマンドを書いておいても消せる。
+```
+$ kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGEMT       8) SIGFPE       9) SIGKILL     10) SIGBUS
+11) SIGSEGV     12) SIGSYS      13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGURG      17) SIGSTOP     18) SIGTSTP     19) SIGCONT     20) SIGCHLD
+21) SIGTTIN     22) SIGTTOU     23) SIGIO       24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGINFO     30) SIGUSR1
+31) SIGUSR2
+```
 ##### 問題23　別のシェルにシグナルを飛ばす
 ##### 問題24　exit時にファイルを消す
 ##### 問題25　pipefail時の困りごと
